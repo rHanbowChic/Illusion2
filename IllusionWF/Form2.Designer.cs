@@ -45,7 +45,7 @@ namespace IllusionWF
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(361, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Illusion 2.1\"Frostnova\" Gui Based on WinForm";
+            this.label1.Text = "Illusion 2.3\"Frostnova\" Gui Based on WinForm";
             // 
             // pictureBox1
             // 

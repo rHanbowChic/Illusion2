@@ -16,7 +16,7 @@ namespace HeavenlyThread
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("HevenlyThread:Ultimate Threader\r\nHeavenlyThread name targetPath r g b showName defaultTheme");
+                Console.WriteLine("HeavenlyThread:Ultimate Threader\r\nHeavenlyThread name targetPath r g b showName defaultTheme");
                 return;
             }
             string appName = args[0];

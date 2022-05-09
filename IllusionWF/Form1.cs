@@ -15,6 +15,8 @@ using System.Windows.Forms;
 using Cyotek.Windows.Forms;
 using System.Diagnostics;
 using System.Reflection;
+using Newtonsoft.Json;
+using Microsoft.VisualBasic;
 
 namespace IllusionWF
 {
@@ -51,6 +53,13 @@ namespace IllusionWF
                 foreach (DirectoryInfo NextFolder in TheFolderU.GetDirectories())
                     foreach (FileInfo NextFile in NextFolder.GetFiles())
                         lnkList.Add("User::" + NextFolder.Name + "\\" + NextFile.Name);
+
+                DirectoryInfo desktopFolder = new DirectoryInfo(userFolder + "\\Desktop");
+                foreach (FileInfo NextFile in desktopFolder.GetFiles())
+                    lnkList.Add("Desktop::" + NextFile.Name);
+                foreach (DirectoryInfo NextFolder in desktopFolder.GetDirectories())
+                    foreach (FileInfo NextFile in NextFolder.GetFiles())
+                        lnkList.Add("Desktop::" + NextFolder.Name + "\\" + NextFile.Name);
             }
             else
             {
@@ -72,6 +81,20 @@ namespace IllusionWF
             {
                 this.listBox1.Items.Add(lnkList[i]);
             }
+
+            string appdataPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+            string illusionRoamingPath = appdataPath + "\\Roaming\\illusion";
+            DefaultConfigObject dconfig = new DefaultConfigObject();
+            string dconfigText = JsonConvert.SerializeObject(dconfig);
+            
+            if (!Directory.Exists(illusionRoamingPath))
+            {
+                Directory.CreateDirectory(illusionRoamingPath);
+            }
+            if (!File.Exists(illusionRoamingPath + "\\Illusion.json"))
+            {
+                File.WriteAllText(illusionRoamingPath + "\\Illusion.json", dconfigText);
+            }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,21 +105,32 @@ namespace IllusionWF
                 string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                 lnkPath = userFolder + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\" + listBox1.SelectedItem.ToString().Substring(6, listBox1.SelectedItem.ToString().Length - 6) + ".lnk";
             }
-            else { lnkPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\" + listBox1.SelectedItem + ".lnk"; }
+            else { 
+                if (listBox1.SelectedItem.ToString().Contains("Desktop::")) 
+                {
+                    string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                    lnkPath = userFolder + "\\Desktop\\" + listBox1.SelectedItem.ToString().Substring(6, listBox1.SelectedItem.ToString().Length - 6) + ".lnk";
+                } 
+                else 
+                { lnkPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\" + listBox1.SelectedItem + ".lnk"; 
+                } 
+            }
             Shell32.Shell sh = new Shell32.Shell();
             Shell32.Folder fold = sh.NameSpace(Path.GetDirectoryName(lnkPath));
             Shell32.FolderItem itm = fold.Items().Item(Path.GetFileName(lnkPath));
             Shell32.ShellLinkObject linkObj = (Shell32.ShellLinkObject)itm.GetLink;
-
-
-            string targetPath= linkObj.Path;
+            string targetPath = linkObj.Path;
             targetPathBox.Text = targetPath;
 
             string appName = "Name";
             string itemName = listBox1.SelectedItem.ToString();
             if (itemName.Contains("User::"))
             {
-                itemName = itemName.Substring(itemName.LastIndexOf("\\") + 1);
+                itemName = itemName.Substring(itemName.LastIndexOf("::") + 2);
+            }
+            if (itemName.Contains("Desktop::"))
+            {
+                itemName = itemName.Substring(itemName.LastIndexOf("::") + 2);
             }
             if (itemName.Contains("\\"))
             {
@@ -207,6 +241,36 @@ namespace IllusionWF
         {
             Form3 f3 = new Form3();
             f3.ShowDialog();
+        }
+
+        private void Form1_DragEnter(object sender, DragEventArgs e)
+        {
+            {
+                if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                {
+                    e.Effect = DragDropEffects.Link;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.None;
+                }
+            }
+        }
+
+        private void Form1_DragDrop(object sender, DragEventArgs e)
+        {
+            string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+            if (path.EndsWith(".lnk"))
+            {
+                Shell32.Shell sh = new Shell32.Shell();
+                Shell32.Folder fold = sh.NameSpace(Path.GetDirectoryName(path));
+                Shell32.FolderItem itm = fold.Items().Item(Path.GetFileName(path));
+                Shell32.ShellLinkObject linkObj = (Shell32.ShellLinkObject)itm.GetLink;
+
+                string targetPath = linkObj.Path;
+                targetPathBox.Text = targetPath;
+                appNameBox.Text = Path.GetFileNameWithoutExtension(path);
+            }
         }
     }
 }

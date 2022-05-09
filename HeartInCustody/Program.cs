@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -32,7 +33,16 @@ namespace HeartInCustody
             string illusionTempPath = tempPath + "\\Illusion";
             string appdataPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
             string illusionDataPath = appdataPath + "\\Local\\Illusion\\";
+            string pythonExePath= currentPath + "\\Pylib\\python.exe";
+            string illusionRoamingPath = appdataPath + "\\Roaming\\illusion";
 
+
+            ConfigObject config;
+            string configText = File.ReadAllText(illusionRoamingPath + "\\Illusion.json");
+            config = JsonConvert.DeserializeObject<ConfigObject>(configText);
+            if (config.useCustomPython)
+                pythonExePath = config.customPythonExePath;
+            int sizeOffset = config.imgOffsetValue;
             CreateIlsTmp();
             Process p1 = new Process();
             p1.StartInfo.FileName = currentPath+"\\ExtractIcon.exe";
@@ -62,9 +72,9 @@ namespace HeartInCustody
                 File.Copy(currentPath + "\\blankSmall.png", illusionTempPath + "\\blankSmall.png");
             }
             Process p2 = new Process();
-            p2.StartInfo.FileName= currentPath + "\\Pylib\\python.exe";
+            p2.StartInfo.FileName = pythonExePath;
             p2.StartInfo.WorkingDirectory = illusionTempPath;
-            p2.StartInfo.Arguments = $" \"{illusionTempPath}\\Heart.py\" {r} {g} {b} Aspiration";
+            p2.StartInfo.Arguments = $" \"{illusionTempPath}\\Heart.py\" {r} {g} {b} Aspiration {sizeOffset}";
             p2.StartInfo.UseShellExecute = false;
             p2.StartInfo.RedirectStandardInput = true;
             p2.StartInfo.RedirectStandardOutput = true;
@@ -75,5 +85,6 @@ namespace HeartInCustody
             p2.Close();
 
         }
+
     }
 }

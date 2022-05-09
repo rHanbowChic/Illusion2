@@ -26,7 +26,12 @@ namespace IllusionWF
         private void Form3_Load(object sender, EventArgs e)
         {
             string appdataPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+            
             illusionRoamingPath = appdataPath + "\\Roaming\\illusion";
+            if (!Directory.Exists(illusionRoamingPath))
+            {
+                Directory.CreateDirectory(illusionRoamingPath);
+            }
             if (!File.Exists(illusionRoamingPath + "\\Illusion.json"))
             {
                 File.WriteAllText(illusionRoamingPath + "\\Illusion.json", "{\"isWindows8\": false,\"sleepTime\": 5000}");
@@ -35,6 +40,9 @@ namespace IllusionWF
             config = JsonConvert.DeserializeObject<ConfigObject>(configText);
             int sleepTime = config.sleepTime;
             sleepTimeBox.Text = sleepTime.ToString();
+            usePythonBox.Checked = config.useCustomPython;
+            pythonExePathBox.Text = config.customPythonExePath;
+            sizeOffsetBox.Text = config.imgOffsetValue.ToString();
         }
 
         private void sleepTimeBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -49,20 +57,7 @@ namespace IllusionWF
             }
         }
 
-        protected override void WndProc(ref Message msg)
-        {
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_CLOSE = 0xF060;
-            //MICROSOFT's API.
-            if (msg.Msg == WM_SYSCOMMAND && ((int)msg.WParam == SC_CLOSE))
-            {
-                int sleepTime = Convert.ToInt32(sleepTimeBox.Text);
-                config.sleepTime = sleepTime;
-                string configText = JsonConvert.SerializeObject(config);
-                File.WriteAllText(illusionRoamingPath + "\\Illusion.json", configText);
-            }
-            base.WndProc(ref msg);
-        }
+        
 
         private void resetButton_Click(object sender, EventArgs e)
         {
@@ -80,8 +75,23 @@ namespace IllusionWF
         {
             int sleepTime = Convert.ToInt32(sleepTimeBox.Text);
             config.sleepTime = sleepTime;
+            config.useCustomPython = usePythonBox.Checked;
+            config.customPythonExePath = pythonExePathBox.Text;
+            config.imgOffsetValue = Convert.ToInt32(sizeOffsetBox.Text);
             string configText = JsonConvert.SerializeObject(config);
             File.WriteAllText(illusionRoamingPath + "\\Illusion.json", configText);
+        }
+
+        private void sizeOffsetBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar) || e.KeyChar == (char)8)
+            {
+
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

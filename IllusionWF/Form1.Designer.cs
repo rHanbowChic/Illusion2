@@ -48,17 +48,18 @@ namespace IllusionWF
             this.CustomBox = new MaterialSkin.Controls.MaterialCheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.BrowseButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
             this.button2 = new System.Windows.Forms.Button();
             this.materialContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
             // 
+            this.listBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 19;
             this.listBox1.Location = new System.Drawing.Point(31, 165);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(259, 290);
+            this.listBox1.Size = new System.Drawing.Size(259, 289);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -288,18 +289,6 @@ namespace IllusionWF
             this.BrowseButton.UseVisualStyleBackColor = true;
             this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
             // 
-            // materialDivider1
-            // 
-            this.materialDivider1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialDivider1.Depth = 0;
-            this.materialDivider1.Location = new System.Drawing.Point(582, 507);
-            this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider1.Name = "materialDivider1";
-            this.materialDivider1.Size = new System.Drawing.Size(188, 24);
-            this.materialDivider1.TabIndex = 20;
-            this.materialDivider1.Text = "materialDivider1";
-            this.materialDivider1.Click += new System.EventHandler(this.materialDivider1_Click);
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(602, 507);
@@ -312,6 +301,7 @@ namespace IllusionWF
             // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
@@ -333,11 +323,12 @@ namespace IllusionWF
             this.Controls.Add(this.appNameBox);
             this.Controls.Add(this.targetPathBox);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.materialDivider1);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Illusion";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             this.materialContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -365,7 +356,6 @@ namespace IllusionWF
         private MaterialSkin.Controls.MaterialCheckBox CustomBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private MaterialSkin.Controls.MaterialRaisedButton BrowseButton;
-        private MaterialSkin.Controls.MaterialDivider materialDivider1;
         private System.Windows.Forms.Button button2;
     }
 }
