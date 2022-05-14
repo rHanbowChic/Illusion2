@@ -19,5 +19,10 @@ namespace IllusionWF
             InitializeComponent();
             
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/rHanbowChic/Illusion2");
+        }
     }
 }

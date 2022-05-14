@@ -26,6 +26,7 @@ namespace HeavenlyThread
             string b = args[4];
             string showName = args[5];
             string defaultTheme = args[6];
+            string appxFolder = args[7];
             string tempPath = Path.GetTempPath();
             string illusionTempPath = tempPath + "\\Illusion";
             string currentPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
@@ -37,9 +38,14 @@ namespace HeavenlyThread
 
 
 
-            if (args.Length == 8)
+            if (args.Length == 9)
             {
-                tilePath = tileSmallPath = args[7];
+                tilePath = tileSmallPath = args[8];
+            }
+            bool appxMode = false;
+            if (appxFolder != "None")
+            {
+                appxMode = true;
             }
             Process p1 = new Process();
             p1.StartInfo.WorkingDirectory = currentPath;
@@ -55,10 +61,13 @@ namespace HeavenlyThread
             p1.Start();
             p1.WaitForExit();
             p1.Close();
-
+            
             p1.StartInfo.FileName = currentPath + "\\HeartInCustody.exe";
-            p1.StartInfo.Arguments = $" \"{targetPath}\" {r} {g} {b}";
-
+            if (appxMode)
+                p1.StartInfo.Arguments = $" \"Appx:{appxFolder}\" {r} {g} {b}";
+            else
+                p1.StartInfo.Arguments = $" \"{targetPath}\" {r} {g} {b}";
+            Console.WriteLine(p1.StartInfo.Arguments);
             p1.Start();
             p1.WaitForExit();
             p1.Close();

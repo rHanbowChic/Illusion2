@@ -138,6 +138,8 @@ namespace IllusionWF
             // ShowNameBox
             // 
             this.ShowNameBox.AutoSize = true;
+            this.ShowNameBox.Checked = true;
+            this.ShowNameBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShowNameBox.Depth = 0;
             this.ShowNameBox.Font = new System.Drawing.Font("Roboto", 10F);
             this.ShowNameBox.Location = new System.Drawing.Point(382, 197);

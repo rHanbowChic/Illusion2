@@ -48,7 +48,7 @@ namespace IllusionWF
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(69, 42);
+            this.label1.Location = new System.Drawing.Point(85, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 19);
             this.label1.TabIndex = 0;
@@ -59,7 +59,7 @@ namespace IllusionWF
             this.sleepTimeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.sleepTimeBox.Depth = 0;
             this.sleepTimeBox.Hint = "";
-            this.sleepTimeBox.Location = new System.Drawing.Point(189, 38);
+            this.sleepTimeBox.Location = new System.Drawing.Point(205, 36);
             this.sleepTimeBox.MaxLength = 32767;
             this.sleepTimeBox.MouseState = MaterialSkin.MouseState.HOVER;
             this.sleepTimeBox.Name = "sleepTimeBox";
@@ -75,7 +75,7 @@ namespace IllusionWF
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(460, 259);
+            this.resetButton.Location = new System.Drawing.Point(551, 273);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(139, 27);
             this.resetButton.TabIndex = 2;
@@ -85,7 +85,7 @@ namespace IllusionWF
             // 
             // pythonExePathBox
             // 
-            this.pythonExePathBox.Location = new System.Drawing.Point(171, 186);
+            this.pythonExePathBox.Location = new System.Drawing.Point(187, 224);
             this.pythonExePathBox.Name = "pythonExePathBox";
             this.pythonExePathBox.Size = new System.Drawing.Size(363, 20);
             this.pythonExePathBox.TabIndex = 3;
@@ -95,7 +95,7 @@ namespace IllusionWF
             this.usePythonBox.AutoSize = true;
             this.usePythonBox.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usePythonBox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.usePythonBox.Location = new System.Drawing.Point(73, 157);
+            this.usePythonBox.Location = new System.Drawing.Point(89, 195);
             this.usePythonBox.Name = "usePythonBox";
             this.usePythonBox.Size = new System.Drawing.Size(187, 23);
             this.usePythonBox.TabIndex = 4;
@@ -107,7 +107,7 @@ namespace IllusionWF
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(69, 185);
+            this.label2.Location = new System.Drawing.Point(85, 223);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 19);
             this.label2.TabIndex = 5;
@@ -117,7 +117,7 @@ namespace IllusionWF
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label3.Location = new System.Drawing.Point(70, 218);
+            this.label3.Location = new System.Drawing.Point(86, 256);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 13);
             this.label3.TabIndex = 6;
@@ -125,7 +125,7 @@ namespace IllusionWF
             // 
             // sizeOffsetBox
             // 
-            this.sizeOffsetBox.Location = new System.Drawing.Point(171, 81);
+            this.sizeOffsetBox.Location = new System.Drawing.Point(481, 105);
             this.sizeOffsetBox.MaxLength = 1;
             this.sizeOffsetBox.Name = "sizeOffsetBox";
             this.sizeOffsetBox.Size = new System.Drawing.Size(69, 20);
@@ -137,7 +137,7 @@ namespace IllusionWF
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(69, 82);
+            this.label4.Location = new System.Drawing.Point(85, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 19);
             this.label4.TabIndex = 8;
@@ -147,7 +147,7 @@ namespace IllusionWF
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label5.Location = new System.Drawing.Point(70, 115);
+            this.label5.Location = new System.Drawing.Point(86, 136);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 13);
             this.label5.TabIndex = 9;
@@ -158,7 +158,7 @@ namespace IllusionWF
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(645, 298);
+            this.ClientSize = new System.Drawing.Size(702, 312);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.sizeOffsetBox);

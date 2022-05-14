@@ -24,6 +24,9 @@ namespace IllusionWF
     {
         string showName;
         string theme;
+        bool isSystemMode;
+
+        string appxFolder= "None";
         public Form1()
         {
             InitializeComponent();
@@ -44,6 +47,7 @@ namespace IllusionWF
                 foreach (FileInfo NextFile in NextFolder.GetFiles())
                     lnkList.Add(NextFolder.Name + "\\" + NextFile.Name);
 
+            isSystemMode = false;
             string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             if (Directory.Exists(userFolder + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"))
             {
@@ -64,6 +68,7 @@ namespace IllusionWF
             else
             {
                 this.Text = "Illusion (SYSTEM Mode)";
+                isSystemMode = true;
             }
             
             for (int i = lnkList.Count - 1; i >= 0; i--)//.lnk files
@@ -77,10 +82,26 @@ namespace IllusionWF
             {
                 lnkList[i] = lnkList[i].ToString().Substring(0, lnkList[i].ToString().Length - 4);
             }
+            string[] bannedApps = File.ReadAllLines(@".\denylist.txt");
+            if (!isSystemMode)
+            {
+                for (int lnkListItem = lnkList.Count - 1; lnkListItem >= 0; lnkListItem--)
+                {
+                    for (int bannedAppsItem = 0; bannedAppsItem < bannedApps.Length; bannedAppsItem++)
+                    {
+                        if (lnkList[lnkListItem].ToString().Contains(bannedApps[bannedAppsItem]))
+                        {
+                            lnkList.RemoveAt(lnkListItem);
+                            break;
+                        }
+                    }
+                }
+            }
             for (int i = 0; i < lnkList.Count; i++)//To lnkBox
             {
                 this.listBox1.Items.Add(lnkList[i]);
             }
+            
 
             string appdataPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
             string illusionRoamingPath = appdataPath + "\\Roaming\\illusion";
@@ -109,7 +130,7 @@ namespace IllusionWF
                 if (listBox1.SelectedItem.ToString().Contains("Desktop::")) 
                 {
                     string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    lnkPath = userFolder + "\\Desktop\\" + listBox1.SelectedItem.ToString().Substring(6, listBox1.SelectedItem.ToString().Length - 6) + ".lnk";
+                    lnkPath = userFolder + "\\Desktop\\" + listBox1.SelectedItem.ToString().Substring(9, listBox1.SelectedItem.ToString().Length - 9) + ".lnk";
                 } 
                 else 
                 { lnkPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\" + listBox1.SelectedItem + ".lnk"; 
@@ -120,6 +141,44 @@ namespace IllusionWF
             Shell32.FolderItem itm = fold.Items().Item(Path.GetFileName(lnkPath));
             Shell32.ShellLinkObject linkObj = (Shell32.ShellLinkObject)itm.GetLink;
             string targetPath = linkObj.Path;
+            if (targetPath == "")
+            {
+                string currentPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                Process p1 = new Process();
+                p1.StartInfo.WorkingDirectory = currentPath;
+                p1.StartInfo.UseShellExecute = false;
+                p1.StartInfo.RedirectStandardInput = true;
+                p1.StartInfo.RedirectStandardOutput = true;
+                p1.StartInfo.RedirectStandardError = true;
+                p1.StartInfo.CreateNoWindow = true;
+                p1.StartInfo.FileName = currentPath + "\\strings.exe";
+                p1.StartInfo.Arguments = $" \"{lnkPath}\"";
+                p1.Start();
+                p1.WaitForExit();
+                string[] stringsOutput = p1.StandardOutput.ReadToEnd().Split('\n');
+                foreach (string s in stringsOutput)
+                {
+                    string fs="";
+                    if (s.Contains("\r"))
+                    {
+                        fs = s.Substring(0, s.Length - 1);
+                    }
+
+                    if (Regex.IsMatch(fs, @".*?_.*?!.*?"))
+                    {
+                        targetPath=@"shell:AppsFolder\"+fs;
+                    }
+                    if (Regex.IsMatch(fs, @"^(C|D|E|F):\.*?\.*?"))  //Anyone tell me a better way to solve this?
+                    {
+                        appxFolder = fs;
+                    }
+                }
+            }
+            else
+            {
+                appxFolder = "None";
+            }
+
             targetPathBox.Text = targetPath;
 
             string appName = "Name";
@@ -188,10 +247,10 @@ namespace IllusionWF
             p1.StartInfo.FileName = currentPath + "\\HeavenlyThread.exe";
             if (CustomBox.Checked == true) 
             { 
-                   p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{customPicPath}\"";
+                   p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\" \"{customPicPath}\"";
             }else
-            p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme}";
-            
+            p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\"";
+            MessageBox.Show(p1.StartInfo.Arguments);
             p1.Start();
             MessageBox.Show("Success");
 

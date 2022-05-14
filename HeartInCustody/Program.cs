@@ -45,10 +45,16 @@ namespace HeartInCustody
             int sizeOffset = config.imgOffsetValue;
             CreateIlsTmp();
             Process p1 = new Process();
-            p1.StartInfo.FileName = currentPath+"\\ExtractIcon.exe";
+            if (targetPath.Contains("Appx:"))
+                p1.StartInfo.FileName = currentPath + "\\ExtractAppxIcon.exe";
+            else
+                p1.StartInfo.FileName = currentPath+"\\ExtractIcon.exe";
             p1.StartInfo.WorkingDirectory = currentPath;
-            p1.StartInfo.Arguments = $" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"";
-
+            if (targetPath.Contains("Appx:"))
+                p1.StartInfo.Arguments=$" \"{targetPath.Substring(5)}\" \"{illusionTempPath}\\exeicon.png\"";
+            else
+                p1.StartInfo.Arguments = $" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"";
+            Console.WriteLine($" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"");
             p1.StartInfo.UseShellExecute = false;
             p1.StartInfo.RedirectStandardInput = true;
             p1.StartInfo.RedirectStandardOutput = true;
