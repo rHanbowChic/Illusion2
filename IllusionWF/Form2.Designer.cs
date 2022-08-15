@@ -45,9 +45,9 @@ namespace IllusionWF
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(90, 224);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(374, 21);
+            this.label1.Size = new System.Drawing.Size(361, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Illusion 2.4.1\"Frostnova\" Gui Based on WinForm";
+            this.label1.Text = "Illusion 2.5\"Frostnova\" Gui Based on WinForm";
             // 
             // pictureBox1
             // 

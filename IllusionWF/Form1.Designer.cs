@@ -49,6 +49,7 @@ namespace IllusionWF
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.BrowseButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.button2 = new System.Windows.Forms.Button();
+            this.materialRaisedButtonDel = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@ namespace IllusionWF
             this.listBox1.ItemHeight = 19;
             this.listBox1.Location = new System.Drawing.Point(31, 165);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(259, 289);
+            this.listBox1.Size = new System.Drawing.Size(265, 270);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -79,6 +80,8 @@ namespace IllusionWF
             this.targetPathBox.TabIndex = 1;
             this.targetPathBox.TabStop = false;
             this.targetPathBox.UseSystemPasswordChar = false;
+            this.targetPathBox.Click += new System.EventHandler(this.targetPathBox_Click);
+            this.targetPathBox.TextChanged += new System.EventHandler(this.targetPathBox_TextChanged);
             // 
             // appNameBox
             // 
@@ -96,6 +99,7 @@ namespace IllusionWF
             this.appNameBox.TabIndex = 5;
             this.appNameBox.TabStop = false;
             this.appNameBox.UseSystemPasswordChar = false;
+            this.appNameBox.TextChanged += new System.EventHandler(this.appNameBox_TextChanged);
             // 
             // materialRaisedButton1
             // 
@@ -142,7 +146,7 @@ namespace IllusionWF
             this.ShowNameBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShowNameBox.Depth = 0;
             this.ShowNameBox.Font = new System.Drawing.Font("Roboto", 10F);
-            this.ShowNameBox.Location = new System.Drawing.Point(382, 197);
+            this.ShowNameBox.Location = new System.Drawing.Point(361, 192);
             this.ShowNameBox.Margin = new System.Windows.Forms.Padding(0);
             this.ShowNameBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ShowNameBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -157,7 +161,7 @@ namespace IllusionWF
             this.themeBox.AutoSize = true;
             this.themeBox.Depth = 0;
             this.themeBox.Font = new System.Drawing.Font("Roboto", 10F);
-            this.themeBox.Location = new System.Drawing.Point(540, 197);
+            this.themeBox.Location = new System.Drawing.Point(519, 192);
             this.themeBox.Margin = new System.Windows.Forms.Padding(0);
             this.themeBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.themeBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -172,7 +176,7 @@ namespace IllusionWF
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(411, 201);
+            this.label3.Location = new System.Drawing.Point(390, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 19);
             this.label3.TabIndex = 11;
@@ -183,7 +187,7 @@ namespace IllusionWF
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(569, 201);
+            this.label4.Location = new System.Drawing.Point(548, 196);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 19);
             this.label4.TabIndex = 12;
@@ -191,7 +195,7 @@ namespace IllusionWF
             // 
             // colorGrid1
             // 
-            this.colorGrid1.Location = new System.Drawing.Point(384, 261);
+            this.colorGrid1.Location = new System.Drawing.Point(363, 256);
             this.colorGrid1.Name = "colorGrid1";
             this.colorGrid1.Size = new System.Drawing.Size(247, 165);
             this.colorGrid1.TabIndex = 13;
@@ -229,7 +233,7 @@ namespace IllusionWF
             this.materialSingleLineTextField1.Depth = 0;
             this.materialSingleLineTextField1.Enabled = false;
             this.materialSingleLineTextField1.Hint = "";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(187, 475);
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(184, 457);
             this.materialSingleLineTextField1.MaxLength = 32767;
             this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
@@ -247,7 +251,7 @@ namespace IllusionWF
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(74, 475);
+            this.label5.Location = new System.Drawing.Point(71, 457);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 19);
             this.label5.TabIndex = 17;
@@ -258,7 +262,7 @@ namespace IllusionWF
             this.CustomBox.AutoSize = true;
             this.CustomBox.Depth = 0;
             this.CustomBox.Font = new System.Drawing.Font("Roboto", 10F);
-            this.CustomBox.Location = new System.Drawing.Point(45, 471);
+            this.CustomBox.Location = new System.Drawing.Point(42, 453);
             this.CustomBox.Margin = new System.Windows.Forms.Padding(0);
             this.CustomBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.CustomBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -273,7 +277,8 @@ namespace IllusionWF
             // 
             this.openFileDialog1.Filter = "PNG文件|*.png|所有文件|*.*";
             this.openFileDialog1.InitialDirectory = "C:";
-            this.openFileDialog1.Title = "选择图片路径...";
+            this.openFileDialog1.Title = "选择图片...";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // BrowseButton
             // 
@@ -281,7 +286,7 @@ namespace IllusionWF
             this.BrowseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BrowseButton.Depth = 0;
             this.BrowseButton.Icon = null;
-            this.BrowseButton.Location = new System.Drawing.Point(555, 465);
+            this.BrowseButton.Location = new System.Drawing.Point(552, 447);
             this.BrowseButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.BrowseButton.Name = "BrowseButton";
             this.BrowseButton.Primary = true;
@@ -301,6 +306,23 @@ namespace IllusionWF
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // materialRaisedButtonDel
+            // 
+            this.materialRaisedButtonDel.AutoSize = true;
+            this.materialRaisedButtonDel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialRaisedButtonDel.Depth = 0;
+            this.materialRaisedButtonDel.Icon = null;
+            this.materialRaisedButtonDel.Location = new System.Drawing.Point(707, 342);
+            this.materialRaisedButtonDel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButtonDel.Name = "materialRaisedButtonDel";
+            this.materialRaisedButtonDel.Primary = true;
+            this.materialRaisedButtonDel.Size = new System.Drawing.Size(69, 36);
+            this.materialRaisedButtonDel.TabIndex = 22;
+            this.materialRaisedButtonDel.Text = "Delete";
+            this.materialRaisedButtonDel.UseVisualStyleBackColor = true;
+            this.materialRaisedButtonDel.Visible = false;
+            this.materialRaisedButtonDel.Click += new System.EventHandler(this.materialRaisedButtonDel_Click);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -308,6 +330,7 @@ namespace IllusionWF
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(829, 537);
+            this.Controls.Add(this.materialRaisedButtonDel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.BrowseButton);
             this.Controls.Add(this.CustomBox);
@@ -359,6 +382,7 @@ namespace IllusionWF
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private MaterialSkin.Controls.MaterialRaisedButton BrowseButton;
         private System.Windows.Forms.Button button2;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButtonDel;
     }
 }
 
