@@ -35,12 +35,22 @@ namespace HeavenlyThread
             string appdataPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
             string illusionDataPath = appdataPath + "\\Local\\Illusion\\";
             string illusionMenuPath = appdataPath + "\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Illusion\\";
+            bool customIco = false;
+            string customIcoPath = "";
 
 
 
             if (args.Length == 9)
             {
                 tilePath = tileSmallPath = args[8];
+            }
+            if (args.Length == 10)
+            {
+                if (args[9] == "-ico")
+                {
+                    customIco = true;
+                    customIcoPath = args[8];
+                }
             }
             bool appxMode = false;
             if (appxFolder != "None")
@@ -64,8 +74,14 @@ namespace HeavenlyThread
             
             p1.StartInfo.FileName = currentPath + "\\HeartInCustody.exe";
             if (appxMode)
-                p1.StartInfo.Arguments = $" \"Appx:{appxFolder}\" {r} {g} {b}";
+                if (customIco)
+                    p1.StartInfo.Arguments = $" \"Appx:{appxFolder}\" {r} {g} {b} -ico \"{customIcoPath}\"";
+                else
+                    p1.StartInfo.Arguments = $" \"Appx:{appxFolder}\" {r} {g} {b}";
             else
+                if (customIco)
+                p1.StartInfo.Arguments = $" \"{targetPath}\" {r} {g} {b} -ico \"{customIcoPath}\"";
+                else
                 p1.StartInfo.Arguments = $" \"{targetPath}\" {r} {g} {b}";
             Console.WriteLine(p1.StartInfo.Arguments);
             p1.Start();

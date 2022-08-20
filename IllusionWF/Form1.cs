@@ -34,7 +34,7 @@ namespace IllusionWF
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue800, Primary.Blue900, Primary.Green600, Accent.LightBlue200, TextShade.BLACK) ;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Purple11886228, Primary.Purple9846645, Primary.Green600, Accent.LightBlue200, TextShade.BLACK) ;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -236,6 +236,7 @@ namespace IllusionWF
             string b = colorGrid1.Color.B.ToString();
             string currentPath= System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             string customPicPath = materialSingleLineTextField1.Text;
+            string customIcoPath = materialSingleLineTextField2.Text;
 
             if (ShowNameBox.Checked)
                 showName = "on";
@@ -260,15 +261,23 @@ namespace IllusionWF
             p1.StartInfo.RedirectStandardError = true;
             p1.StartInfo.CreateNoWindow = true;
             p1.StartInfo.FileName = currentPath + "\\HeavenlyThread.exe";
-            if (CustomBox.Checked == true) 
-            { 
-                   p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\" \"{customPicPath}\"";
-            }else
-            p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\"";
-            //MessageBox.Show(p1.StartInfo.Arguments);
-            p1.Start();
-            MessageBox.Show("Success");
-            materialRaisedButtonDel.Visible = true;
+            if (CustomBox.Checked)
+            {
+                p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\" \"{customPicPath}\"";
+            }
+            else
+            {
+                if (CustomicoBox.Checked)
+                {
+                    p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\" \"{customIcoPath}\" -ico";
+
+                }else
+                p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\"";
+                MessageBox.Show(p1.StartInfo.Arguments);
+                p1.Start();
+                MessageBox.Show("Success");
+                materialRaisedButtonDel.Visible = true;
+            }
 
         }
 
@@ -291,6 +300,7 @@ namespace IllusionWF
             if (CustomBox.Checked)
             {
                 materialSingleLineTextField1.Enabled = true;
+                CustomicoBox.Checked = false;
             }
             else
             {
@@ -381,6 +391,33 @@ namespace IllusionWF
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void CustomicoBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CustomicoBox.Checked)
+            {
+                materialSingleLineTextField2.Enabled = true;
+                CustomBox.Checked = false;
+            }
+            else
+            {
+                materialSingleLineTextField2.Enabled = false;
+            }
+        }
+
+        private void BrowseicoButton_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                CustomicoBox.Checked = true;
+            }
+            materialSingleLineTextField2.Text = openFileDialog2.FileName;
+        }
+
+        private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
 
         }

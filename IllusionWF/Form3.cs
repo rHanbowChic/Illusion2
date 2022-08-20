@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace IllusionWF
 {
-    public partial class Form3 : Form
+    public partial class Form3 : MaterialForm
     {
         ConfigObject config;
         string illusionRoamingPath;

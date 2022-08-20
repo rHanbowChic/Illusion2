@@ -29,6 +29,7 @@ namespace IllusionWF
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.targetPathBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.appNameBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -50,6 +51,12 @@ namespace IllusionWF
             this.BrowseButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.button2 = new System.Windows.Forms.Button();
             this.materialRaisedButtonDel = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.CustomicoBox = new MaterialSkin.Controls.MaterialCheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.materialSingleLineTextField2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.BrowseicoButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.label6 = new System.Windows.Forms.Label();
             this.materialContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,11 +129,11 @@ namespace IllusionWF
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(25, 88);
+            this.label1.Location = new System.Drawing.Point(27, 88);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 19);
+            this.label1.Size = new System.Drawing.Size(61, 19);
             this.label1.TabIndex = 7;
-            this.label1.Text = "EXE路径";
+            this.label1.Text = "目标路径";
             // 
             // label2
             // 
@@ -137,7 +144,7 @@ namespace IllusionWF
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
             this.label2.TabIndex = 8;
-            this.label2.Text = "磁贴名称";
+            this.label2.Text = "显示名称";
             // 
             // ShowNameBox
             // 
@@ -195,7 +202,7 @@ namespace IllusionWF
             // 
             // colorGrid1
             // 
-            this.colorGrid1.Location = new System.Drawing.Point(363, 256);
+            this.colorGrid1.Location = new System.Drawing.Point(362, 269);
             this.colorGrid1.Name = "colorGrid1";
             this.colorGrid1.Size = new System.Drawing.Size(247, 165);
             this.colorGrid1.TabIndex = 13;
@@ -220,7 +227,7 @@ namespace IllusionWF
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(695, 507);
+            this.button1.Location = new System.Drawing.Point(722, 530);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 14;
@@ -233,7 +240,7 @@ namespace IllusionWF
             this.materialSingleLineTextField1.Depth = 0;
             this.materialSingleLineTextField1.Enabled = false;
             this.materialSingleLineTextField1.Hint = "";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(184, 457);
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(173, 503);
             this.materialSingleLineTextField1.MaxLength = 32767;
             this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
@@ -241,7 +248,7 @@ namespace IllusionWF
             this.materialSingleLineTextField1.SelectedText = "";
             this.materialSingleLineTextField1.SelectionLength = 0;
             this.materialSingleLineTextField1.SelectionStart = 0;
-            this.materialSingleLineTextField1.Size = new System.Drawing.Size(353, 23);
+            this.materialSingleLineTextField1.Size = new System.Drawing.Size(398, 23);
             this.materialSingleLineTextField1.TabIndex = 16;
             this.materialSingleLineTextField1.TabStop = false;
             this.materialSingleLineTextField1.UseSystemPasswordChar = false;
@@ -251,18 +258,18 @@ namespace IllusionWF
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(71, 457);
+            this.label5.Location = new System.Drawing.Point(59, 507);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 19);
+            this.label5.Size = new System.Drawing.Size(111, 19);
             this.label5.TabIndex = 17;
-            this.label5.Text = "自定义图片 路径:";
+            this.label5.Text = "自定义背景  路径:";
             // 
             // CustomBox
             // 
             this.CustomBox.AutoSize = true;
             this.CustomBox.Depth = 0;
             this.CustomBox.Font = new System.Drawing.Font("Roboto", 10F);
-            this.CustomBox.Location = new System.Drawing.Point(42, 453);
+            this.CustomBox.Location = new System.Drawing.Point(30, 503);
             this.CustomBox.Margin = new System.Windows.Forms.Padding(0);
             this.CustomBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.CustomBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -286,19 +293,19 @@ namespace IllusionWF
             this.BrowseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BrowseButton.Depth = 0;
             this.BrowseButton.Icon = null;
-            this.BrowseButton.Location = new System.Drawing.Point(552, 447);
+            this.BrowseButton.Location = new System.Drawing.Point(577, 494);
             this.BrowseButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.BrowseButton.Name = "BrowseButton";
             this.BrowseButton.Primary = true;
-            this.BrowseButton.Size = new System.Drawing.Size(76, 36);
+            this.BrowseButton.Size = new System.Drawing.Size(32, 36);
             this.BrowseButton.TabIndex = 19;
-            this.BrowseButton.Text = "Browse";
+            this.BrowseButton.Text = "...";
             this.BrowseButton.UseVisualStyleBackColor = true;
             this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(602, 507);
+            this.button2.Location = new System.Drawing.Point(627, 530);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 21;
@@ -323,13 +330,97 @@ namespace IllusionWF
             this.materialRaisedButtonDel.Visible = false;
             this.materialRaisedButtonDel.Click += new System.EventHandler(this.materialRaisedButtonDel_Click);
             // 
+            // CustomicoBox
+            // 
+            this.CustomicoBox.AutoSize = true;
+            this.CustomicoBox.Depth = 0;
+            this.CustomicoBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.CustomicoBox.Location = new System.Drawing.Point(30, 459);
+            this.CustomicoBox.Margin = new System.Windows.Forms.Padding(0);
+            this.CustomicoBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.CustomicoBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CustomicoBox.Name = "CustomicoBox";
+            this.CustomicoBox.Ripple = true;
+            this.CustomicoBox.Size = new System.Drawing.Size(26, 30);
+            this.CustomicoBox.TabIndex = 23;
+            this.CustomicoBox.UseVisualStyleBackColor = true;
+            this.CustomicoBox.CheckedChanged += new System.EventHandler(this.CustomicoBox_CheckedChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label7.Location = new System.Drawing.Point(59, 463);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 19);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "自定义Icon  路径:";
+            // 
+            // materialSingleLineTextField2
+            // 
+            this.materialSingleLineTextField2.Depth = 0;
+            this.materialSingleLineTextField2.Enabled = false;
+            this.materialSingleLineTextField2.Hint = "";
+            this.materialSingleLineTextField2.Location = new System.Drawing.Point(173, 459);
+            this.materialSingleLineTextField2.MaxLength = 32767;
+            this.materialSingleLineTextField2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField2.Name = "materialSingleLineTextField2";
+            this.materialSingleLineTextField2.PasswordChar = '\0';
+            this.materialSingleLineTextField2.SelectedText = "";
+            this.materialSingleLineTextField2.SelectionLength = 0;
+            this.materialSingleLineTextField2.SelectionStart = 0;
+            this.materialSingleLineTextField2.Size = new System.Drawing.Size(398, 23);
+            this.materialSingleLineTextField2.TabIndex = 26;
+            this.materialSingleLineTextField2.TabStop = false;
+            this.materialSingleLineTextField2.UseSystemPasswordChar = false;
+            // 
+            // BrowseicoButton
+            // 
+            this.BrowseicoButton.AutoSize = true;
+            this.BrowseicoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BrowseicoButton.Depth = 0;
+            this.BrowseicoButton.Icon = null;
+            this.BrowseicoButton.Location = new System.Drawing.Point(577, 446);
+            this.BrowseicoButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BrowseicoButton.Name = "BrowseicoButton";
+            this.BrowseicoButton.Primary = true;
+            this.BrowseicoButton.Size = new System.Drawing.Size(32, 36);
+            this.BrowseicoButton.TabIndex = 27;
+            this.BrowseicoButton.Text = "...";
+            this.BrowseicoButton.UseVisualStyleBackColor = true;
+            this.BrowseicoButton.Click += new System.EventHandler(this.BrowseicoButton_Click);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.Filter = "PNG文件|*.png|所有文件|*.*";
+            this.openFileDialog2.InitialDirectory = "C:";
+            this.openFileDialog2.Title = "选择图片...";
+            this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label6.Location = new System.Drawing.Point(358, 247);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 19);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "背景颜色";
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(829, 537);
+            this.ClientSize = new System.Drawing.Size(829, 562);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.BrowseicoButton);
+            this.Controls.Add(this.materialSingleLineTextField2);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.CustomicoBox);
             this.Controls.Add(this.materialRaisedButtonDel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.BrowseButton);
@@ -348,6 +439,7 @@ namespace IllusionWF
             this.Controls.Add(this.appNameBox);
             this.Controls.Add(this.targetPathBox);
             this.Controls.Add(this.listBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Illusion";
@@ -383,6 +475,12 @@ namespace IllusionWF
         private MaterialSkin.Controls.MaterialRaisedButton BrowseButton;
         private System.Windows.Forms.Button button2;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButtonDel;
+        private MaterialSkin.Controls.MaterialCheckBox CustomicoBox;
+        private System.Windows.Forms.Label label7;
+        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField2;
+        private MaterialSkin.Controls.MaterialRaisedButton BrowseicoButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.Label label6;
     }
 }
 

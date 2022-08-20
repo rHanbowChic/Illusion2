@@ -28,6 +28,16 @@ namespace HeartInCustody
             int r = Convert.ToInt32(args[1]);
             int g = Convert.ToInt32(args[2]);
             int b = Convert.ToInt32(args[3]);
+            bool customIco = false;
+            string customIcoPath = "";
+            if (args.Length == 6)
+            {
+                if (args[4] == "-ico")
+                {
+                    customIco = true;
+                    customIcoPath = args[5];
+                }
+            }
             string currentPath= Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location); ;
             string tempPath = Path.GetTempPath();
             string illusionTempPath = tempPath + "\\Illusion";
@@ -45,25 +55,35 @@ namespace HeartInCustody
             int sizeOffset = config.imgOffsetValue;
             CreateIlsTmp();
             Process p1 = new Process();
-            if (targetPath.Contains("Appx:"))
-                p1.StartInfo.FileName = currentPath + "\\ExtractAppxIcon.exe";
+            if (customIco == false)
+            {
+                if (targetPath.Contains("Appx:"))
+                    p1.StartInfo.FileName = currentPath + "\\ExtractAppxIcon.exe";
+                else
+                    p1.StartInfo.FileName = currentPath + "\\ExtractIcon.exe";
+                p1.StartInfo.WorkingDirectory = currentPath;
+                if (targetPath.Contains("Appx:"))
+                    p1.StartInfo.Arguments = $" \"{targetPath.Substring(5)}\" \"{illusionTempPath}\\exeicon.png\"";
+                else
+                    p1.StartInfo.Arguments = $" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"";
+                Console.WriteLine($" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"");
+                p1.StartInfo.UseShellExecute = false;
+                p1.StartInfo.RedirectStandardInput = true;
+                p1.StartInfo.RedirectStandardOutput = true;
+                p1.StartInfo.RedirectStandardError = true;
+                p1.StartInfo.CreateNoWindow = true;
+                Console.WriteLine($" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"");
+                p1.Start();
+                p1.WaitForExit();
+                p1.Close();
+            }
             else
-                p1.StartInfo.FileName = currentPath+"\\ExtractIcon.exe";
-            p1.StartInfo.WorkingDirectory = currentPath;
-            if (targetPath.Contains("Appx:"))
-                p1.StartInfo.Arguments=$" \"{targetPath.Substring(5)}\" \"{illusionTempPath}\\exeicon.png\"";
-            else
-                p1.StartInfo.Arguments = $" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"";
-            Console.WriteLine($" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"");
-            p1.StartInfo.UseShellExecute = false;
-            p1.StartInfo.RedirectStandardInput = true;
-            p1.StartInfo.RedirectStandardOutput = true;
-            p1.StartInfo.RedirectStandardError = true;
-            p1.StartInfo.CreateNoWindow = true;
-            Console.WriteLine($" \"{targetPath}\" \"{illusionTempPath}\\exeicon.png\"");
-            p1.Start();
-            p1.WaitForExit();
-            p1.Close();
+            {
+                if (File.Exists($"{illusionTempPath}\\exeicon.png"))
+                    File.Delete($"{illusionTempPath}\\exeicon.png");
+                File.Copy(customIcoPath, $"{illusionTempPath}\\exeicon.png");
+
+            }
 
             if (!File.Exists(illusionTempPath + "\\Heart.py"))
             {
