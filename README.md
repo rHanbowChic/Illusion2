@@ -1,5 +1,6 @@
 Custom Your Tiles
 ==================
+[Download](https://github.com/rHanbowChic/Illusion2/releases) it here!
 
 IllusionWF
 ------------
