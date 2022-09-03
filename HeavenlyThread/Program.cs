@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -67,10 +68,12 @@ namespace HeavenlyThread
 
             p1.StartInfo.FileName = currentPath + "\\Prologue.exe";
             p1.StartInfo.Arguments = $" \"{targetPath}\" \"{appName}\"";
+            Console.WriteLine(p1.StartInfo.Arguments);//DEBUG
             
             p1.Start();
             p1.WaitForExit();
             p1.Close();
+            Thread.Sleep(200);
             
             p1.StartInfo.FileName = currentPath + "\\HeartInCustody.exe";
             if (appxMode)

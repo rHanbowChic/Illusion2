@@ -34,7 +34,7 @@ namespace IllusionWF
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Purple11886228, Primary.Purple9846645, Primary.Green600, Accent.LightBlue200, TextShade.BLACK) ;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Purple11886228, Primary.Purple9846645, Primary.Green600, Accent.Purple11886228, TextShade.BLACK) ;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -141,6 +141,7 @@ namespace IllusionWF
             Shell32.FolderItem itm = fold.Items().Item(Path.GetFileName(lnkPath));
             Shell32.ShellLinkObject linkObj = (Shell32.ShellLinkObject)itm.GetLink;
             string targetPath = linkObj.Path;
+            string targetPathArgs = linkObj.Arguments;
             if (targetPath == "")
             {
                 string currentPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
@@ -179,7 +180,7 @@ namespace IllusionWF
                 appxFolder = "None";
             }
 
-            targetPathBox.Text = targetPath;
+            targetPathBox.Text = targetPath+" "+targetPathArgs;
 
             string appName = "Name";
             string itemName = listBox1.SelectedItem.ToString();
@@ -204,12 +205,12 @@ namespace IllusionWF
 
             if (File.Exists($@"{userFolde}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appName}.lnk"))
             {
-                materialRaisedButtonDel.Visible = true;
+                ButtonDel.Visible = true;
 
             }
             else
             {
-                materialRaisedButtonDel.Visible = false;
+                ButtonDel.Visible = false;
             }
         }
 
@@ -276,7 +277,7 @@ namespace IllusionWF
                 MessageBox.Show(p1.StartInfo.Arguments);
                 p1.Start();
                 MessageBox.Show("Success");
-                materialRaisedButtonDel.Visible = true;
+                //ButtonDel.Visible = true;
             }
 
         }
@@ -358,11 +359,11 @@ namespace IllusionWF
             }
         }
 
-        private void materialRaisedButtonDel_Click(object sender, EventArgs e)
+        private void ButtonDel_Click(object sender, EventArgs e)
         {
             string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             File.Delete($@"{userFolder}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk");
-            materialRaisedButtonDel.Visible = false;
+            ButtonDel.Visible = false;
         }
 
         private void targetPathBox_Click(object sender, EventArgs e)
@@ -381,12 +382,12 @@ namespace IllusionWF
 
             if (File.Exists($@"{userFolde}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk"))
             {
-                materialRaisedButtonDel.Visible = true;
+                ButtonDel.Visible = true;
 
             }
             else
             {
-                materialRaisedButtonDel.Visible = false;
+                ButtonDel.Visible = false;
             }
         }
 

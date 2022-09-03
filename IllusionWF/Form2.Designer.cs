@@ -44,11 +44,11 @@ namespace IllusionWF
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label1.Location = new System.Drawing.Point(173, 221);
+            this.label1.Location = new System.Drawing.Point(224, 190);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 21);
+            this.label1.Size = new System.Drawing.Size(193, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Illusion 2.6 \"Crepusculum\"";
+            this.label1.Text = "Illusion 2.7 \"Hydrangea\"";
             // 
             // pictureBox1
             // 
@@ -102,12 +102,12 @@ namespace IllusionWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 305);
+            this.ClientSize = new System.Drawing.Size(545, 307);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form2";

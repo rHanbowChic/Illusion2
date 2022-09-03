@@ -32,8 +32,9 @@ namespace Prologue
                 Directory.CreateDirectory(illusionDataPath);
             if (!Directory.Exists(illusionDataPath + appName))
                 Directory.CreateDirectory(illusionDataPath + appName);
-            if (!File.Exists(illusionDataPath + appName + "\\Aspiration.exe"))
-                File.Copy(currentPath + "\\Aspiration.exe", illusionDataPath + appName + "\\Aspiration.exe");
+            if (File.Exists(illusionDataPath + appName + "\\Aspiration.exe"))
+                File.Delete(illusionDataPath + appName + "\\Aspiration.exe");
+            File.Copy(currentPath + "\\Aspiration.exe", illusionDataPath + appName + "\\Aspiration.exe");
 
             File.WriteAllText(illusionDataPath + appName + "\\Aspiration.cfg", aspiraCfg);
 
