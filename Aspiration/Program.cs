@@ -34,14 +34,14 @@ namespace Aspiration
                 p1.Start();*/
                 
                 string targetExe = targetPath;
-                if (targetPath.Contains(" "))
+                if (targetPath.Contains(".exe "))
                 {
-                    targetExe = targetPath.Substring(0, targetPath.IndexOf(" "));
+                    targetExe = targetPath.Substring(0, targetPath.IndexOf(".exe ")+4);
                 }
                 string targetArgs = "";
-                if (targetPath.Contains(" "))
+                if (targetPath.Contains(".exe "))
                 {
-                    targetArgs = targetPath.Substring(targetPath.IndexOf(" ")+1);
+                    targetArgs = targetPath.Substring(targetPath.IndexOf(".exe ")+5);
                 }
                 p1.StartInfo.FileName = targetExe;
                 p1.StartInfo.WorkingDirectory = Path.GetDirectoryName(targetExe);

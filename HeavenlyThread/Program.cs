@@ -74,7 +74,19 @@ namespace HeavenlyThread
             p1.WaitForExit();
             p1.Close();
             Thread.Sleep(200);
-            
+
+
+            string targetExe = targetPath;
+            if (targetPath.Contains(".exe "))
+            {
+                targetExe = targetPath.Substring(0, targetPath.IndexOf(".exe ") + 4);
+            }
+            string targetArgs = "";
+            if (targetPath.Contains(".exe "))
+            {
+                targetArgs = targetPath.Substring(targetPath.IndexOf(".exe ") + 5);
+            }
+
             p1.StartInfo.FileName = currentPath + "\\HeartInCustody.exe";
             if (appxMode)
                 if (customIco)
@@ -83,10 +95,11 @@ namespace HeavenlyThread
                     p1.StartInfo.Arguments = $" \"Appx:{appxFolder}\" {r} {g} {b}";
             else
                 if (customIco)
-                p1.StartInfo.Arguments = $" \"{targetPath}\" {r} {g} {b} -ico \"{customIcoPath}\"";
+                    p1.StartInfo.Arguments = $" \"{targetExe}\" {r} {g} {b} -ico \"{customIcoPath}\"";
                 else
-                p1.StartInfo.Arguments = $" \"{targetPath}\" {r} {g} {b}";
+                    p1.StartInfo.Arguments = $" \"{targetExe}\" {r} {g} {b}";
             Console.WriteLine(p1.StartInfo.Arguments);
+            Console.WriteLine(targetArgs);
             p1.Start();
             p1.WaitForExit();
             p1.Close();
