@@ -148,6 +148,7 @@ namespace IllusionWF
             string targetPathArgs = linkObj.Arguments;
             if (targetPath == "")
             {
+                appxFolder = "None";
                 string currentPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
                 Process p1 = new Process();
                 p1.StartInfo.WorkingDirectory = currentPath;
@@ -176,24 +177,22 @@ namespace IllusionWF
                     if (Regex.IsMatch(fs, @"^(C|D|E|F):\.*?\.*?"))  //Anyone tell me a better way to solve this?
                     {
                         appxFolder = fs;
+                    }
+                }
+
+                switch (listBox1.SelectedItem.ToString())
+                {
+                    case var v when v.Contains("System Tools\\Control Panel"):
+                        targetPath = "Shell:ControlPanelFolder";
                         break;
-                    }
-
-                    appxFolder = "None";
-                    switch (listBox1.SelectedItem.ToString())
-                    {
-                        case var v when v.Contains("System Tools\\Control Panel"):
-                            targetPath = "Shell:ControlPanelFolder";
-                            break;
-                        case var v when v.Contains("System Tools\\Run"):
-                            targetPath = "Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
-                            break;
-                        case var v when v.Contains("File Explorer"):
-                            targetPath = "Shell:MyComputerFolder";
-                            break;
+                    case var v when v.Contains("System Tools\\Run"):
+                        targetPath = "Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
+                        break;
+                    case var v when v.Contains("File Explorer"):
+                        targetPath = "Shell:MyComputerFolder";
+                        break;
 
 
-                    }
                 }
             }
             else
