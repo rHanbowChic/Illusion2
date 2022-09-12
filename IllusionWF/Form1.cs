@@ -26,7 +26,7 @@ namespace IllusionWF
         string theme;
         bool isSystemMode;
 
-        string appxFolder= "None";
+        string appxFolder = "None";
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace IllusionWF
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Purple11886228, Primary.Purple9846645, Primary.Green600, Accent.Purple11886228, TextShade.BLACK) ;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Purple11886228, Primary.Purple9846645, Primary.Green600, Accent.Purple11886228, TextShade.BLACK);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace IllusionWF
                 this.Text = "Illusion (SYSTEM Mode)";
                 isSystemMode = true;
             }
-            
+
             for (int i = lnkList.Count - 1; i >= 0; i--)//.lnk files
             {
                 if (!Regex.IsMatch(lnkList[i].ToString(), @"(.*)(\.lnk)"))
@@ -101,13 +101,13 @@ namespace IllusionWF
             {
                 this.listBox1.Items.Add(lnkList[i]);
             }
-            
+
 
             string appdataPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
             string illusionRoamingPath = appdataPath + "\\Roaming\\illusion";
             DefaultConfigObject dconfig = new DefaultConfigObject();
             string dconfigText = JsonConvert.SerializeObject(dconfig);
-            
+
             if (!Directory.Exists(illusionRoamingPath))
             {
                 Directory.CreateDirectory(illusionRoamingPath);
@@ -121,26 +121,30 @@ namespace IllusionWF
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string lnkPath = "";
+            string targetPath = "";
+            
             if (listBox1.SelectedItem.ToString().Contains("User::"))
             {
                 string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                 lnkPath = userFolder + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\" + listBox1.SelectedItem.ToString().Substring(6, listBox1.SelectedItem.ToString().Length - 6) + ".lnk";
             }
-            else { 
-                if (listBox1.SelectedItem.ToString().Contains("Desktop::")) 
+            else
+            {
+                if (listBox1.SelectedItem.ToString().Contains("Desktop::"))
                 {
                     string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                     lnkPath = userFolder + "\\Desktop\\" + listBox1.SelectedItem.ToString().Substring(9, listBox1.SelectedItem.ToString().Length - 9) + ".lnk";
-                } 
-                else 
-                { lnkPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\" + listBox1.SelectedItem + ".lnk"; 
-                } 
+                }
+                else
+                {
+                    lnkPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\" + listBox1.SelectedItem + ".lnk";
+                }
             }
             Shell32.Shell sh = new Shell32.Shell();
             Shell32.Folder fold = sh.NameSpace(Path.GetDirectoryName(lnkPath));
             Shell32.FolderItem itm = fold.Items().Item(Path.GetFileName(lnkPath));
             Shell32.ShellLinkObject linkObj = (Shell32.ShellLinkObject)itm.GetLink;
-            string targetPath = linkObj.Path;
+            targetPath = linkObj.Path;
             string targetPathArgs = linkObj.Arguments;
             if (targetPath == "")
             {
@@ -159,7 +163,7 @@ namespace IllusionWF
                 string[] stringsOutput = p1.StandardOutput.ReadToEnd().Split('\n');
                 foreach (string s in stringsOutput)
                 {
-                    string fs="";
+                    string fs = "";
                     if (s.Contains("\r"))
                     {
                         fs = s.Substring(0, s.Length - 1);
@@ -167,11 +171,28 @@ namespace IllusionWF
 
                     if (Regex.IsMatch(fs, @".*?_.*?!.*?"))
                     {
-                        targetPath=@"shell:AppsFolder\"+fs;
+                        targetPath = @"shell:AppsFolder\" + fs;
                     }
                     if (Regex.IsMatch(fs, @"^(C|D|E|F):\.*?\.*?"))  //Anyone tell me a better way to solve this?
                     {
                         appxFolder = fs;
+                        break;
+                    }
+
+                    appxFolder = "None";
+                    switch (listBox1.SelectedItem.ToString())
+                    {
+                        case var v when v.Contains("System Tools\\Control Panel"):
+                            targetPath = "Shell:ControlPanelFolder";
+                            break;
+                        case var v when v.Contains("System Tools\\Run"):
+                            targetPath = "Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
+                            break;
+                        case var v when v.Contains("File Explorer"):
+                            targetPath = "Shell:MyComputerFolder";
+                            break;
+
+
                     }
                 }
             }
@@ -180,7 +201,7 @@ namespace IllusionWF
                 appxFolder = "None";
             }
 
-            targetPathBox.Text = targetPath+" "+targetPathArgs;
+            targetPathBox.Text = targetPath + " " + targetPathArgs;
 
             string appName = "Name";
             string itemName = listBox1.SelectedItem.ToString();
@@ -224,7 +245,8 @@ namespace IllusionWF
             if (r + g + b < 384)
             {
                 themeBox.Checked = false;
-            }else
+            }
+            else
             {
                 themeBox.Checked = true;
             }
@@ -235,7 +257,7 @@ namespace IllusionWF
             string r = colorGrid1.Color.R.ToString();
             string g = colorGrid1.Color.G.ToString();
             string b = colorGrid1.Color.B.ToString();
-            string currentPath= System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string currentPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             string customPicPath = materialSingleLineTextField1.Text;
             string customIcoPath = materialSingleLineTextField2.Text;
 
@@ -243,11 +265,29 @@ namespace IllusionWF
                 showName = "on";
             else
                 showName = "off";
-            
+
             if (themeBox.Checked)
                 theme = "dark";
             else
                 theme = "light";
+
+            if (!(targetPathBox.Text.IndexOf("shell:",StringComparison.OrdinalIgnoreCase)>=0 || File.Exists(targetPathBox.Text)))
+            {
+                if (targetPathBox.Text.Contains(@"Program Files (x86)\"))
+                {
+                    if (File.Exists(targetPathBox.Text.Substring(0, 16) + targetPathBox.Text.Substring(22)))
+                    targetPathBox.Text = targetPathBox.Text.Substring(0, 16) + targetPathBox.Text.Substring(22);
+                }
+                else
+                {
+                    if (targetPathBox.Text.Contains(@"Program Files\"))
+                    {
+                        if (File.Exists(targetPathBox.Text.Substring(0, 16) + " (x86)" + targetPathBox.Text.Substring(16)))
+                        targetPathBox.Text = targetPathBox.Text.Substring(0, 16) +" (x86)"+ targetPathBox.Text.Substring(16);
+                    }
+                }
+            }
+
             string appName = appNameBox.Text;
             string targetPath = targetPathBox.Text;
             if (targetPathBox.Text == "")
@@ -272,8 +312,9 @@ namespace IllusionWF
                 {
                     p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\" \"{customIcoPath}\" -ico";
 
-                }else
-                p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\"";
+                }
+                else
+                    p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\"";
                 MessageBox.Show(p1.StartInfo.Arguments);
                 p1.Start();
                 MessageBox.Show("Success");

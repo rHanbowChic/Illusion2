@@ -33,5 +33,5 @@ icon=p
 im.paste(icon,(13-sizeOffset,13-sizeOffset))
 im.save(argExeName+".tileSmall.png")
 '''
-我不想看这个脚本了!真的不想看了!
+这看上去像是混淆过的。
 '''
