@@ -43,10 +43,12 @@ namespace Epilogue
 
 
             string str = Path.GetFileName(args[0]);
-            File.Copy(args[0], illusionTempPath+ "\\"+str);
+            if(!File.Exists(illusionTempPath + "\\" + str))
+                File.Copy(args[0], illusionTempPath+ "\\"+str);
             File.Delete(args[0]);
             Thread.Sleep(sleepTime);
-            File.Copy(illusionTempPath+str, args[0]);
+            if(!File.Exists(args[0]))
+                File.Copy(illusionTempPath+"\\"+str, args[0]);
             File.Delete(illusionTempPath+"\\"+str);
 
 

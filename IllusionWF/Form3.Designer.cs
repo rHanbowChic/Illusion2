@@ -89,7 +89,7 @@ namespace IllusionWF
             this.sizeOffsetBox.SelectionLength = 0;
             this.sizeOffsetBox.SelectionStart = 0;
             this.sizeOffsetBox.Size = new System.Drawing.Size(69, 23);
-            this.sizeOffsetBox.TabIndex = 1;
+            this.sizeOffsetBox.TabIndex = 2;
             this.sizeOffsetBox.TabStop = false;
             this.sizeOffsetBox.UseSystemPasswordChar = false;
             this.sizeOffsetBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sizeOffsetBox_KeyPress);
@@ -99,7 +99,7 @@ namespace IllusionWF
             this.resetButton.Location = new System.Drawing.Point(538, 332);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(139, 27);
-            this.resetButton.TabIndex = 2;
+            this.resetButton.TabIndex = 5;
             this.resetButton.Text = "重置缓存并重启";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
@@ -109,7 +109,7 @@ namespace IllusionWF
             this.pythonExePathBox.Location = new System.Drawing.Point(174, 283);
             this.pythonExePathBox.Name = "pythonExePathBox";
             this.pythonExePathBox.Size = new System.Drawing.Size(363, 20);
-            this.pythonExePathBox.TabIndex = 3;
+            this.pythonExePathBox.TabIndex = 4;
             // 
             // usePythonBox
             // 
@@ -119,7 +119,7 @@ namespace IllusionWF
             this.usePythonBox.Location = new System.Drawing.Point(76, 254);
             this.usePythonBox.Name = "usePythonBox";
             this.usePythonBox.Size = new System.Drawing.Size(187, 23);
-            this.usePythonBox.TabIndex = 4;
+            this.usePythonBox.TabIndex = 3;
             this.usePythonBox.Text = "使用自定义Python.exe路径";
             this.usePythonBox.UseVisualStyleBackColor = true;
             // 

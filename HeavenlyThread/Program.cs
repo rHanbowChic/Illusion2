@@ -117,7 +117,8 @@ namespace HeavenlyThread
                 File.Delete(illusionDataPath + appName + "\\Aspiration.tileSmall.png");
             File.Copy(tilePath, illusionDataPath + appName + "\\Aspiration.tile.png");
             File.Copy(tileSmallPath, illusionDataPath + appName + "\\Aspiration.tileSmall.png");
-            
+
+            Thread.Sleep(100);
             p1.StartInfo.FileName = currentPath + "\\Epilogue.exe";
             p1.StartInfo.Arguments = $" \"{illusionMenuPath}{appName}.lnk\"";
             Console.WriteLine($" \"{illusionMenuPath}{appName}.lnk\"");

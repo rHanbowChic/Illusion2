@@ -26,7 +26,11 @@ namespace IllusionWF
         string theme;
         bool isSystemMode;
 
+        string illusionTempPath = Path.GetTempPath() + "\\Illusion";
+
         string appxFolder = "None";
+
+        bool ApplySuccessing = false;
         public Form1()
         {
             InitializeComponent();
@@ -116,6 +120,8 @@ namespace IllusionWF
             {
                 File.WriteAllText(illusionRoamingPath + "\\Illusion.json", dconfigText);
             }
+
+            timer2.Start();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -221,17 +227,6 @@ namespace IllusionWF
                 appName = itemName;
             }
             appNameBox.Text = appName;
-            string userFolde = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-
-            if (File.Exists($@"{userFolde}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appName}.lnk"))
-            {
-                ButtonDel.Visible = true;
-
-            }
-            else
-            {
-                ButtonDel.Visible = false;
-            }
         }
 
 
@@ -314,11 +309,12 @@ namespace IllusionWF
                 }
                 else
                     p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\"";
-                MessageBox.Show(p1.StartInfo.Arguments);
-                p1.Start();
-                MessageBox.Show("Success");
-                //ButtonDel.Visible = true;
+                
             }
+            p1.Start();
+            ApplySuccessing = true;
+            timer1.Enabled = true;
+            timer1.Start();
 
         }
 
@@ -402,7 +398,10 @@ namespace IllusionWF
         private void ButtonDel_Click(object sender, EventArgs e)
         {
             string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            File.Delete($@"{userFolder}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk");
+            if (File.Exists($@"{userFolder}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk"))
+            {
+                File.Delete($@"{userFolder}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk");
+            }
             ButtonDel.Visible = false;
         }
 
@@ -418,17 +417,7 @@ namespace IllusionWF
 
         private void appNameBox_TextChanged(object sender, EventArgs e)
         {
-            string userFolde = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
-            if (File.Exists($@"{userFolde}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk"))
-            {
-                ButtonDel.Visible = true;
-
-            }
-            else
-            {
-                ButtonDel.Visible = false;
-            }
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -461,6 +450,66 @@ namespace IllusionWF
         private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ApplySuccessing = false;
+            timer1.Enabled = false;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            if (File.Exists($@"{userFolder}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk"))
+            {
+                ButtonDel.Visible = true;
+                ButtonDel.Text = "DELETE";
+                ButtonDel.Enabled = true;
+                if (ApplySuccessing)
+                {
+                    ButtonApply.Enabled = false;
+                    ButtonApply.Text = "Success!";
+                }
+                else
+                {
+                    ButtonApply.Enabled = true;
+                    ButtonApply.Text = "APPLY";
+                }
+            }
+            else
+            {
+                if (File.Exists(illusionTempPath + $@"\{appNameBox.Text}.lnk"))
+                {
+                    ButtonDel.Visible = true;
+                    ButtonDel.Text = "Waiting...";
+                    ButtonDel.Enabled = false;
+                    if (ApplySuccessing)
+                    {
+                        ButtonApply.Enabled = false;
+                        ButtonApply.Text = "Success!";
+                    }
+                    else
+                    {
+                        ButtonApply.Enabled = false;
+                        ButtonApply.Text = "Waiting...";
+                    }
+                }
+                else
+                {
+                    ButtonDel.Visible = false;
+                    if (ApplySuccessing)
+                    {
+                        ButtonApply.Enabled = false;
+                        ButtonApply.Text = "Success!";
+                    }
+                    else
+                    {
+                        ButtonApply.Enabled = true;
+                        ButtonApply.Text = "APPLY";
+                    }
+                }
+            }
         }
     }
 }
