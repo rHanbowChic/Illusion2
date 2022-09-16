@@ -60,6 +60,7 @@ namespace IllusionWF
             this.ButtonDel = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.LinkLabelRefresh = new System.Windows.Forms.LinkLabel();
             this.materialContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -457,6 +458,20 @@ namespace IllusionWF
             this.timer2.Interval = 50;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // LinkLabelRefresh
+            // 
+            this.LinkLabelRefresh.ActiveLinkColor = System.Drawing.Color.White;
+            this.LinkLabelRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LinkLabelRefresh.AutoSize = true;
+            this.LinkLabelRefresh.LinkColor = System.Drawing.Color.Gray;
+            this.LinkLabelRefresh.Location = new System.Drawing.Point(64, 455);
+            this.LinkLabelRefresh.Name = "LinkLabelRefresh";
+            this.LinkLabelRefresh.Size = new System.Drawing.Size(44, 13);
+            this.LinkLabelRefresh.TabIndex = 30;
+            this.LinkLabelRefresh.TabStop = true;
+            this.LinkLabelRefresh.Text = "Refresh";
+            this.LinkLabelRefresh.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelRefresh_LinkClicked);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -464,6 +479,7 @@ namespace IllusionWF
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(720, 648);
+            this.Controls.Add(this.LinkLabelRefresh);
             this.Controls.Add(this.ButtonDel);
             this.Controls.Add(this.ButtonApply);
             this.Controls.Add(this.label6);
@@ -531,6 +547,7 @@ namespace IllusionWF
         private System.Windows.Forms.Button ButtonDel;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.LinkLabel LinkLabelRefresh;
     }
 }
 

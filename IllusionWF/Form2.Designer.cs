@@ -46,9 +46,9 @@ namespace IllusionWF
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(224, 190);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 21);
+            this.label1.Size = new System.Drawing.Size(170, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Illusion 2.9 \"Zippertile\"";
+            this.label1.Text = "Illusion 2.10 \"Goppa\"";
             // 
             // pictureBox1
             // 
