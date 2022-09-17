@@ -170,7 +170,7 @@ namespace IllusionWF
             switch (listBox1.SelectedItem.ToString())
             {
                 case var v when v.Contains("System Tools\\Control Panel"):
-                    targetPath = "Shell:ControlPanelFolder";
+                    targetPath = "C:\\Windows\\System32\\control.exe";
                     break;
                 case var v when v.Contains("System Tools\\Run"):
                     targetPath = "Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
@@ -237,7 +237,7 @@ namespace IllusionWF
                     switch (listBox1.SelectedItem.ToString())
                     {
                         case var v when v.Contains("System Tools\\Control Panel"):
-                            targetPath = "Shell:ControlPanelFolder";
+                            targetPath = "C:\\Windows\\System32\\control.exe";
                             break;
                         case var v when v.Contains("System Tools\\Run"):
                             targetPath = "Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
