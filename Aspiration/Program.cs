@@ -57,7 +57,7 @@ namespace Aspiration
                 p1.Close();
             }
             else
-            Process.Start("explorer.exe", targetPath);
+            Process.Start("explorer.exe", " " + targetPath);
 
         }
     }

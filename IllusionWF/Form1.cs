@@ -116,9 +116,9 @@ namespace IllusionWF
 
             ArrayList commonlnkList = new ArrayList();
 
-            commonlnkList.Add("1 - Desktop");
-            commonlnkList.Add("2 - Search");
-            commonlnkList.Add("4 - Control Panel");
+            commonlnkList.Add("显示桌面");
+            commonlnkList.Add("Windows 搜索");
+            commonlnkList.Add("设置");
 
 
             for (int i = 0; i < commonlnkList.Count; i++)
@@ -176,15 +176,15 @@ namespace IllusionWF
                     targetPath = "Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
                     break;
                 case var v when v.Contains("File Explorer"):
-                    targetPath = "Shell:MyComputerFolder";
+                    targetPath = "C:\\Windows\\explorer.exe";
                     break;
-                case var v when v.Contains("1 - Desktop"):
+                case var v when v.Contains("显示桌面"):
                     targetPath = "shell:::{3080F90D-D7AD-11D9-BD98-0000947B0257}";
                     break;
-                case var v when v.Contains("2 - Search"):
+                case var v when v.Contains("Windows 搜索"):
                     targetPath = "shell:::{2559a1f8-21d7-11d4-bdaf-00c04f60b9f0}";
                     break;
-                case var v when v.Contains("4 - Control Panel"):
+                case var v when v.Contains("设置"):
                     targetPath = "shell:appsfolder\\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel";
                     break;
                 default:
@@ -253,7 +253,10 @@ namespace IllusionWF
                 {
                     appxFolder = "None";
                 }
-
+                if (targetPathArgs == "")
+                {
+                    targetPathBox.Text = targetPath;
+                }else
                 targetPathBox.Text = targetPath + " " + targetPathArgs;
             }
             else 
@@ -338,7 +341,7 @@ namespace IllusionWF
 
             string appName = appNameBox.Text;
             string targetPath = targetPathBox.Text;
-            if (targetPathBox.Text == "")
+            if (appNameBox.Text == "")
             {
                 return;
             }
@@ -641,9 +644,9 @@ namespace IllusionWF
 
             ArrayList commonlnkList = new ArrayList();
 
-            commonlnkList.Add("1 - Desktop");
-            commonlnkList.Add("2 - Search");
-            commonlnkList.Add("4 - Control Panel");
+            commonlnkList.Add("显示桌面");
+            commonlnkList.Add("Windows 搜索");
+            commonlnkList.Add("设置");
 
 
             for (int i = 0; i < commonlnkList.Count; i++)
