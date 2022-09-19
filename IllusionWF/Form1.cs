@@ -518,10 +518,10 @@ namespace IllusionWF
             ApplySuccessing = false;
             timer1.Enabled = false;
         }
-
+        string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         private void timer2_Tick(object sender, EventArgs e)
         {
-            string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            
             if (File.Exists($@"{userFolder}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk"))
             {
                 ButtonDel.Visible = true;
@@ -543,7 +543,7 @@ namespace IllusionWF
                 if (File.Exists(illusionTempPath + $@"\{appNameBox.Text}.lnk"))
                 {
                     ButtonDel.Visible = true;
-                    ButtonDel.Text = "Waiting...";
+                    ButtonDel.Text = "Waiting for System";
                     ButtonDel.Enabled = false;
                     if (ApplySuccessing)
                     {
@@ -553,7 +553,7 @@ namespace IllusionWF
                     else
                     {
                         ButtonApply.Enabled = false;
-                        ButtonApply.Text = "Waiting...";
+                        ButtonApply.Text = "Waiting for System";
                     }
                 }
                 else
@@ -571,8 +571,9 @@ namespace IllusionWF
                     }
                 }
             }
+            //This reminds me of command block......
         }
-        
+
         private void LinkLabelRefresh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.listBox1.Items.Clear();

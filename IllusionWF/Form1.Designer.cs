@@ -451,7 +451,7 @@ namespace IllusionWF
             // 
             // timer1
             // 
-            this.timer1.Interval = 1500;
+            this.timer1.Interval = 700;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timer2
@@ -483,7 +483,7 @@ namespace IllusionWF
             this.button3.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.button3.Location = new System.Drawing.Point(605, 100);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 23);
+            this.button3.Size = new System.Drawing.Size(47, 23);
             this.button3.TabIndex = 31;
             this.button3.Text = "More";
             this.button3.UseVisualStyleBackColor = false;

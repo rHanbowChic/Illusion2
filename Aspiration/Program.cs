@@ -52,9 +52,6 @@ namespace Aspiration
                 p1.StartInfo.RedirectStandardError = true;
                 p1.StartInfo.CreateNoWindow = true;
                 p1.Start();
-                p1.StandardInput.WriteLine(targetPath+" && exit");
-                p1.WaitForExit();
-                p1.Close();
             }
             else
             Process.Start("explorer.exe", " " + targetPath);
