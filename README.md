@@ -1,4 +1,4 @@
-Custom Your Tiles
+Customize Your Tiles
 ==================
 ![Illusion Logo](./logo.png)
 
