@@ -31,6 +31,8 @@ namespace IllusionWF
         string appxFolder = "None";
 
         bool ApplySuccessing = false;
+
+        string selectedDir = "C:\\";
         public Form1()
         {
             InitializeComponent();
@@ -263,6 +265,22 @@ namespace IllusionWF
             {
                 targetPathBox.Text = targetPath;
             }
+            if (!(targetPathBox.Text.IndexOf("shell:", StringComparison.OrdinalIgnoreCase) >= 0 || File.Exists(targetPathBox.Text)))
+            {
+                if (targetPathBox.Text.Contains(@"Program Files (x86)\"))
+                {
+                    if (File.Exists(targetPathBox.Text.Substring(0, 16) + targetPathBox.Text.Substring(22)))
+                        targetPathBox.Text = targetPathBox.Text.Substring(0, 16) + targetPathBox.Text.Substring(22);
+                }
+                else
+                {
+                    if (targetPathBox.Text.Contains(@"Program Files\"))
+                    {
+                        if (File.Exists(targetPathBox.Text.Substring(0, 16) + " (x86)" + targetPathBox.Text.Substring(16)))
+                            targetPathBox.Text = targetPathBox.Text.Substring(0, 16) + " (x86)" + targetPathBox.Text.Substring(16);
+                    }
+                }
+            }
 
             string appName = "Name";
             string itemName = listBox1.SelectedItem.ToString();
@@ -322,22 +340,6 @@ namespace IllusionWF
             else
                 theme = "light";
 
-            if (!(targetPathBox.Text.IndexOf("shell:",StringComparison.OrdinalIgnoreCase)>=0 || File.Exists(targetPathBox.Text)))
-            {
-                if (targetPathBox.Text.Contains(@"Program Files (x86)\"))
-                {
-                    if (File.Exists(targetPathBox.Text.Substring(0, 16) + targetPathBox.Text.Substring(22)))
-                    targetPathBox.Text = targetPathBox.Text.Substring(0, 16) + targetPathBox.Text.Substring(22);
-                }
-                else
-                {
-                    if (targetPathBox.Text.Contains(@"Program Files\"))
-                    {
-                        if (File.Exists(targetPathBox.Text.Substring(0, 16) + " (x86)" + targetPathBox.Text.Substring(16)))
-                        targetPathBox.Text = targetPathBox.Text.Substring(0, 16) +" (x86)"+ targetPathBox.Text.Substring(16);
-                    }
-                }
-            }
 
             string appName = appNameBox.Text;
             string targetPath = targetPathBox.Text;
@@ -407,8 +409,9 @@ namespace IllusionWF
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 CustomBox.Checked = true;
+                materialSingleLineTextField1.Text = openFileDialog1.FileName;
             }
-            materialSingleLineTextField1.Text = openFileDialog1.FileName;
+            
         }
 
         private void materialDivider1_Click(object sender, EventArgs e)
@@ -500,8 +503,9 @@ namespace IllusionWF
             if (openFileDialog2.ShowDialog() == DialogResult.OK)
             {
                 CustomicoBox.Checked = true;
+                materialSingleLineTextField2.Text = openFileDialog2.FileName;
             }
-            materialSingleLineTextField2.Text = openFileDialog2.FileName;
+            
         }
 
         private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
@@ -653,6 +657,25 @@ namespace IllusionWF
             {
                 this.listBox1.Items.Add(commonlnkList[i]);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            openFileDialog3.FileName = "";
+            openFileDialog3.InitialDirectory = selectedDir;
+            string targetPath = targetPathBox.Text;
+            if (targetPath.Contains(".exe "))
+            {
+                targetPath = targetPath.Substring(0, targetPath.IndexOf(".exe ") + 4);
+            }
+            if (File.Exists(targetPath))
+                openFileDialog3.InitialDirectory = Path.GetDirectoryName(targetPath);
+            if (openFileDialog3.ShowDialog() == DialogResult.OK)
+            {
+                targetPathBox.Text = openFileDialog3.FileName;
+                selectedDir = Path.GetDirectoryName(openFileDialog3.FileName);
+            }
+            
         }
     }
 }

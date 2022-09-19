@@ -61,6 +61,8 @@ namespace IllusionWF
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.LinkLabelRefresh = new System.Windows.Forms.LinkLabel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
             this.materialContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +97,7 @@ namespace IllusionWF
             this.targetPathBox.SelectedText = "";
             this.targetPathBox.SelectionLength = 0;
             this.targetPathBox.SelectionStart = 0;
-            this.targetPathBox.Size = new System.Drawing.Size(513, 23);
+            this.targetPathBox.Size = new System.Drawing.Size(448, 23);
             this.targetPathBox.TabIndex = 1;
             this.targetPathBox.TabStop = false;
             this.targetPathBox.UseSystemPasswordChar = false;
@@ -472,6 +474,21 @@ namespace IllusionWF
             this.LinkLabelRefresh.Text = "Refresh";
             this.LinkLabelRefresh.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelRefresh_LinkClicked);
             // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.button3.Location = new System.Drawing.Point(605, 100);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 23);
+            this.button3.TabIndex = 31;
+            this.button3.Text = "More";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -479,6 +496,7 @@ namespace IllusionWF
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(720, 648);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.LinkLabelRefresh);
             this.Controls.Add(this.ButtonDel);
             this.Controls.Add(this.ButtonApply);
@@ -548,6 +566,8 @@ namespace IllusionWF
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.LinkLabel LinkLabelRefresh;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog3;
     }
 }
 

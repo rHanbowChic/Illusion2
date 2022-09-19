@@ -76,6 +76,8 @@ namespace IllusionWF
             int sleepTime = Convert.ToInt32(sleepTimeBox.Text);
             config.sleepTime = sleepTime;
             config.useCustomPython = usePythonBox.Checked;
+            if (pythonExePathBox.Text == "")
+                config.useCustomPython = false;
             config.customPythonExePath = pythonExePathBox.Text;
             config.imgOffsetValue = Convert.ToInt32(sizeOffsetBox.Text);
             string configText = JsonConvert.SerializeObject(config);
