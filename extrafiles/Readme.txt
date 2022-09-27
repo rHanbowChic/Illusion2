@@ -1,1 +1,1 @@
-You are probably looking for "strings.exe". It comes from https://download.sysinternals.com/files/Strings.zip that copyrighted by Windows Sysinternals.
+You are probably looking for "strings.exe". It comes from https://download.sysinternals.com/files/Strings.zip copyrighted by Windows Sysinternals.
