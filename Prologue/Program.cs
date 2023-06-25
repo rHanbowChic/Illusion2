@@ -9,7 +9,7 @@ using Shell32;
 namespace Prologue
 {
     class Program
-        
+
     {
         [STAThread]
         static void Main(string[] args)
@@ -26,7 +26,15 @@ namespace Prologue
             string illusionDataPath = appdataPath + "\\Local\\Illusion\\";
             string startmenuPath = appdataPath + "\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs";
             string illusionMenuPath = startmenuPath + "\\Illusion\\";
-            string aspiraCfg = targetPath;
+
+            //fixing targetPath with arguments
+            string targetPathArgs = "";
+            if (!(targetPath.EndsWith(".exe")) && targetPath.Contains(".exe "))//exe file with arguments
+            {
+                targetPathArgs = targetPath.Substring(targetPath.LastIndexOf(".exe") + 5);
+                targetPath = targetPath.Substring(0, targetPath.LastIndexOf(".exe") + 4);
+            }
+            
 
             if (!Directory.Exists(illusionDataPath))
                 Directory.CreateDirectory(illusionDataPath);
@@ -36,7 +44,20 @@ namespace Prologue
                 File.Delete(illusionDataPath + appName + "\\Aspiration.exe");
             File.Copy(currentPath + "\\Aspiration.exe", illusionDataPath + appName + "\\Aspiration.exe");
 
-            File.WriteAllText(illusionDataPath + appName + "\\Aspiration.cfg", aspiraCfg);
+            if (File.Exists(illusionDataPath + appName + "\\Aspiration.lnk"))
+                File.Delete(illusionDataPath + appName + "\\Aspiration.lnk");
+
+            string lnkPath = illusionDataPath + appName + "\\Aspiration.lnk";
+            File.WriteAllBytes(lnkPath, new byte[0]);
+            Shell32.Shell sh = new Shell32.Shell();
+            Shell32.Folder fold = sh.NameSpace(Path.GetDirectoryName(lnkPath));
+            Shell32.FolderItem item = fold.Items().Item(Path.GetFileName(lnkPath));
+            Shell32.ShellLinkObject linkObj = (Shell32.ShellLinkObject)item.GetLink;
+            linkObj.Path = targetPath;
+            if (!(targetPathArgs==""))
+                linkObj.Arguments = targetPathArgs;
+            linkObj.WorkingDirectory = Path.GetDirectoryName(targetPath);
+            linkObj.Save();
 
             if (!Directory.Exists(illusionMenuPath))
                 Directory.CreateDirectory(illusionMenuPath);

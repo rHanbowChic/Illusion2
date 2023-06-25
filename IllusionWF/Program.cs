@@ -21,7 +21,7 @@ namespace IllusionWF
             {
                 if (build >= 22000)
                 {
-                    MessageBox.Show("It looks like you are using Windows 11.\r\nSadly it does not suppport \'Start\' tiles if you haven't use some methods.", "Wow!");
+                    MessageBox.Show("您好像正在使用 Windows 11 或更高的版本。\r\n默认情况下磁贴不受支持，且不建议这样做。", "不支持的系统",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -29,7 +29,7 @@ namespace IllusionWF
             }
             else
             {
-                MessageBox.Show("Make sure you are using Windows 8 or higher\r\nIllusion need an OS that supports \'Start\' tiles.", "Unsupported OS");
+                MessageBox.Show("确认您在使用 Windows 10 。", "不支持的系统",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
     }

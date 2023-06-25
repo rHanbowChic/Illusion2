@@ -36,5 +36,10 @@ namespace IllusionWF
             else
                 linkLabel2.Text = "咦咦咦？这个文件好像不存在的样子...";
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

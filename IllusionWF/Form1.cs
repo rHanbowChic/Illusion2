@@ -33,6 +33,8 @@ namespace IllusionWF
         bool ApplySuccessing = false;
 
         string selectedDir = "C:\\";
+
+        ArrayList lnkList = new ArrayList();
         public Form1()
         {
             InitializeComponent();
@@ -47,7 +49,7 @@ namespace IllusionWF
         {
             this.listBox1.Items.Clear();
 
-            ArrayList lnkList = new ArrayList();
+            
             isSystemMode = false;
             string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             if (Directory.Exists(userFolder + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"))
@@ -111,22 +113,19 @@ namespace IllusionWF
                     }
                 }
             }
+
+            lnkList.Add("显示桌面");
+            lnkList.Add("Windows 搜索");
+            lnkList.Add("设置");
+
+            
             for (int i = 0; i < lnkList.Count; i++)//To lnkBox
             {
                 this.listBox1.Items.Add(lnkList[i]);
             }
 
-            ArrayList commonlnkList = new ArrayList();
+           
 
-            commonlnkList.Add("显示桌面");
-            commonlnkList.Add("Windows 搜索");
-            commonlnkList.Add("设置");
-
-
-            for (int i = 0; i < commonlnkList.Count; i++)
-            {
-                this.listBox1.Items.Add(commonlnkList[i]);
-            }
 
 
             string appdataPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
@@ -150,7 +149,9 @@ namespace IllusionWF
         {
             string lnkPath = "";
             string targetPath = "";
-            
+            string targetPathArgs = "";
+
+
             if (listBox1.SelectedItem.ToString().Contains("User::"))
             {
                 string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -175,19 +176,19 @@ namespace IllusionWF
                     targetPath = "C:\\Windows\\System32\\control.exe";
                     break;
                 case var v when v.Contains("System Tools\\Run"):
-                    targetPath = "Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
+                    targetPath = "C:\\Windows\\explorer.exe Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
                     break;
                 case var v when v.Contains("File Explorer"):
                     targetPath = "C:\\Windows\\explorer.exe";
                     break;
                 case var v when v.Contains("显示桌面"):
-                    targetPath = "shell:::{3080F90D-D7AD-11D9-BD98-0000947B0257}";
+                    targetPath = "C:\\Windows\\explorer.exe Shell:::{3080F90D-D7AD-11D9-BD98-0000947B0257}";
                     break;
                 case var v when v.Contains("Windows 搜索"):
-                    targetPath = "shell:::{2559a1f8-21d7-11d4-bdaf-00c04f60b9f0}";
+                    targetPath = "C:\\Windows\\explorer.exe Shell:::{2559a1f8-21d7-11d4-bdaf-00c04f60b9f0}";
                     break;
                 case var v when v.Contains("设置"):
-                    targetPath = "shell:appsfolder\\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel";
+                    targetPath = "C:\\Windows\\explorer.exe Shell:appsfolder\\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel";
                     break;
                 default:
                     oktoRun = true;
@@ -199,62 +200,68 @@ namespace IllusionWF
                 Shell32.Shell sh = new Shell32.Shell();
                 Shell32.Folder fold = sh.NameSpace(Path.GetDirectoryName(lnkPath));
                 Shell32.FolderItem itm = fold.Items().Item(Path.GetFileName(lnkPath));
-                Shell32.ShellLinkObject linkObj = (Shell32.ShellLinkObject)itm.GetLink;
-                targetPath = linkObj.Path;
-                string targetPathArgs = linkObj.Arguments;
-                if (targetPath == "")
-                {
-                    appxFolder = "None";
-                    string currentPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-                    Process p1 = new Process();
-                    p1.StartInfo.WorkingDirectory = currentPath;
-                    p1.StartInfo.UseShellExecute = false;
-                    p1.StartInfo.RedirectStandardInput = true;
-                    p1.StartInfo.RedirectStandardOutput = true;
-                    p1.StartInfo.RedirectStandardError = true;
-                    p1.StartInfo.CreateNoWindow = true;
-                    p1.StartInfo.FileName = currentPath + "\\strings.exe";
-                    p1.StartInfo.Arguments = $" \"{lnkPath}\"";
-                    p1.Start();
-                    p1.WaitForExit();
-                    string[] stringsOutput = p1.StandardOutput.ReadToEnd().Split('\n');
-                    foreach (string s in stringsOutput)
+                try
+                { //Start TRY!! REMOVE this before debugging!!
+                  //Start TRY!! REMOVE this before debugging!!
+                  //Start TRY!! REMOVE this before debugging!!
+                    Shell32.ShellLinkObject linkObj = (Shell32.ShellLinkObject)itm.GetLink;
+                    targetPath = linkObj.Path;
+                    targetPathArgs = linkObj.Arguments;
+                    if (targetPath == "")
                     {
-                        string fs = "";
-                        if (s.Contains("\r"))
+                        appxFolder = "None";
+                        string currentPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                        Process p1 = new Process();
+                        p1.StartInfo.WorkingDirectory = currentPath;
+                        p1.StartInfo.UseShellExecute = false;
+                        p1.StartInfo.RedirectStandardInput = true;
+                        p1.StartInfo.RedirectStandardOutput = true;
+                        p1.StartInfo.RedirectStandardError = true;
+                        p1.StartInfo.CreateNoWindow = true;
+                        p1.StartInfo.FileName = currentPath + "\\strings.exe";
+                        p1.StartInfo.Arguments = $" \"{lnkPath}\"";
+                        p1.Start();
+                        p1.WaitForExit();
+                        string[] stringsOutput = p1.StandardOutput.ReadToEnd().Split('\n');
+                        foreach (string s in stringsOutput)
                         {
-                            fs = s.Substring(0, s.Length - 1);
+                            string fs = "";
+                            if (s.Contains("\r"))
+                            {
+                                fs = s.Substring(0, s.Length - 1);
+                            }
+
+                            if (Regex.IsMatch(fs, @".*?_.*?!.*?"))
+                            {
+                                targetPath = @"C:\\Windows\\explorer.exe Shell:AppsFolder\" + fs;
+                            }
+                            if (Regex.IsMatch(fs, @"^(C|D|E|F):\.*?\.*?"))  //Anyone tell me a better way to solve this?
+                            {
+                                appxFolder = fs;
+                            }
                         }
 
-                        if (Regex.IsMatch(fs, @".*?_.*?!.*?"))
+                        switch (listBox1.SelectedItem.ToString())
                         {
-                            targetPath = @"shell:AppsFolder\" + fs;
-                        }
-                        if (Regex.IsMatch(fs, @"^(C|D|E|F):\.*?\.*?"))  //Anyone tell me a better way to solve this?
-                        {
-                            appxFolder = fs;
+                            case var v when v.Contains("System Tools\\Control Panel"):
+                                targetPath = "C:\\Windows\\System32\\control.exe";
+                                break;
+                            case var v when v.Contains("System Tools\\Run"):
+                                targetPath = "C:\\Windows\\explorer.exe Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
+                                break;
+                            case var v when v.Contains("File Explorer"):
+                                targetPath = "C:\\Windows\\explorer.exe Shell:MyComputerFolder";
+                                break;
+
+
                         }
                     }
-
-                    switch (listBox1.SelectedItem.ToString())
+                    else
                     {
-                        case var v when v.Contains("System Tools\\Control Panel"):
-                            targetPath = "C:\\Windows\\System32\\control.exe";
-                            break;
-                        case var v when v.Contains("System Tools\\Run"):
-                            targetPath = "Shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}";
-                            break;
-                        case var v when v.Contains("File Explorer"):
-                            targetPath = "Shell:MyComputerFolder";
-                            break;
-
-
+                        appxFolder = "None";
                     }
                 }
-                else
-                {
-                    appxFolder = "None";
-                }
+                catch { }//REMOVE try before debugging!!!
                 if (targetPathArgs == "")
                 {
                     targetPathBox.Text = targetPath;
@@ -265,7 +272,7 @@ namespace IllusionWF
             {
                 targetPathBox.Text = targetPath;
             }
-            if (!(targetPathBox.Text.IndexOf("shell:", StringComparison.OrdinalIgnoreCase) >= 0 || File.Exists(targetPathBox.Text)))
+            if (!(targetPathBox.Text.IndexOf("C:\\Windows\\explorer.exe Shell:", StringComparison.OrdinalIgnoreCase) >= 0 || File.Exists(targetPathBox.Text)))
             {
                 if (targetPathBox.Text.Contains(@"Program Files (x86)\"))
                 {
@@ -525,7 +532,7 @@ namespace IllusionWF
             if (File.Exists($@"{userFolder}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk"))
             {
                 ButtonDel.Visible = true;
-                ButtonDel.Text = "DELETE";
+                ButtonDel.Text = "删除";
                 ButtonDel.Enabled = true;
                 if (ApplySuccessing)
                 {
@@ -535,7 +542,7 @@ namespace IllusionWF
                 else
                 {
                     ButtonApply.Enabled = true;
-                    ButtonApply.Text = "APPLY";
+                    ButtonApply.Text = "应用";
                 }
             }
             else
@@ -567,7 +574,7 @@ namespace IllusionWF
                     else
                     {
                         ButtonApply.Enabled = true;
-                        ButtonApply.Text = "APPLY";
+                        ButtonApply.Text = "应用";
                     }
                 }
             }
@@ -678,5 +685,18 @@ namespace IllusionWF
             }
             
         }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            foreach(string i in lnkList)
+            {
+                if (i.ToUpper().Contains(searchBox.Text.ToUpper()))
+                    listBox1.Items.Add(i);
+            }
+
+            label8.Visible = false;
+        }
+
     }
 }
