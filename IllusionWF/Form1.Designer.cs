@@ -99,7 +99,7 @@ namespace IllusionWF
             this.targetPathBox.SelectedText = "";
             this.targetPathBox.SelectionLength = 0;
             this.targetPathBox.SelectionStart = 0;
-            this.targetPathBox.Size = new System.Drawing.Size(448, 23);
+            this.targetPathBox.Size = new System.Drawing.Size(469, 23);
             this.targetPathBox.TabIndex = 1;
             this.targetPathBox.TabStop = false;
             this.targetPathBox.UseSystemPasswordChar = false;
@@ -193,6 +193,7 @@ namespace IllusionWF
             this.label3.Size = new System.Drawing.Size(100, 19);
             this.label3.TabIndex = 11;
             this.label3.Text = "大磁贴显示文字";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -205,6 +206,7 @@ namespace IllusionWF
             this.label4.Size = new System.Drawing.Size(61, 19);
             this.label4.TabIndex = 12;
             this.label4.Text = "深色文字";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // colorGrid1
             // 
@@ -278,6 +280,7 @@ namespace IllusionWF
             this.label5.Size = new System.Drawing.Size(111, 19);
             this.label5.TabIndex = 17;
             this.label5.Text = "自定义背景  路径:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // CustomBox
             // 
@@ -363,6 +366,7 @@ namespace IllusionWF
             this.label7.Size = new System.Drawing.Size(112, 19);
             this.label7.TabIndex = 25;
             this.label7.Text = "自定义Icon  路径:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // materialSingleLineTextField2
             // 
@@ -470,10 +474,10 @@ namespace IllusionWF
             this.LinkLabelRefresh.LinkColor = System.Drawing.Color.Gray;
             this.LinkLabelRefresh.Location = new System.Drawing.Point(64, 455);
             this.LinkLabelRefresh.Name = "LinkLabelRefresh";
-            this.LinkLabelRefresh.Size = new System.Drawing.Size(44, 13);
+            this.LinkLabelRefresh.Size = new System.Drawing.Size(31, 13);
             this.LinkLabelRefresh.TabIndex = 30;
             this.LinkLabelRefresh.TabStop = true;
-            this.LinkLabelRefresh.Text = "Refresh";
+            this.LinkLabelRefresh.Text = "刷新";
             this.LinkLabelRefresh.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelRefresh_LinkClicked);
             // 
             // button3
@@ -483,11 +487,11 @@ namespace IllusionWF
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.button3.Location = new System.Drawing.Point(605, 100);
+            this.button3.Location = new System.Drawing.Point(620, 100);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(47, 23);
+            this.button3.Size = new System.Drawing.Size(32, 23);
             this.button3.TabIndex = 31;
-            this.button3.Text = "More";
+            this.button3.Text = "...";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -516,7 +520,7 @@ namespace IllusionWF
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label8.Location = new System.Drawing.Point(67, 176);
+            this.label8.Location = new System.Drawing.Point(67, 178);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(32, 17);
             this.label8.TabIndex = 33;

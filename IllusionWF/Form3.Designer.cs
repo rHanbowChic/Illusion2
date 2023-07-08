@@ -43,6 +43,8 @@ namespace IllusionWF
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +103,6 @@ namespace IllusionWF
             this.sizeOffsetBox.TabIndex = 2;
             this.sizeOffsetBox.TabStop = false;
             this.sizeOffsetBox.UseSystemPasswordChar = false;
-            this.sizeOffsetBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sizeOffsetBox_KeyPress);
             // 
             // resetButton
             // 
@@ -162,9 +163,9 @@ namespace IllusionWF
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.label3.Location = new System.Drawing.Point(47, 259);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 16);
+            this.label3.Size = new System.Drawing.Size(263, 16);
             this.label3.TabIndex = 6;
-            this.label3.Text = "需要带有PIL的Python 3.";
+            this.label3.Text = "需要带有PIL的Python 3.  >py -m pip install pillow";
             // 
             // label4
             // 
@@ -189,9 +190,9 @@ namespace IllusionWF
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.label5.Location = new System.Drawing.Point(47, 139);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 16);
+            this.label5.Size = new System.Drawing.Size(214, 16);
             this.label5.TabIndex = 9;
-            this.label5.Text = "0到9之间的数字.";
+            this.label5.Text = "范围：-23 ~ 227 ，数字越大，图标越大。";
             // 
             // groupBox1
             // 
@@ -199,6 +200,8 @@ namespace IllusionWF
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.groupBox1.Controls.Add(this.linkLabel1);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.pythonExePathBox);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
@@ -215,7 +218,28 @@ namespace IllusionWF
             this.groupBox1.Size = new System.Drawing.Size(582, 313);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "设置将在退出时自动保存";
+            this.groupBox1.Text = "退出时保存";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(47, 75);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(162, 16);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "应用磁贴后，等待系统的时长。";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(183)))), ((int)(((byte)(205)))));
+            this.linkLabel1.Location = new System.Drawing.Point(852, 528);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(220, 16);
+            this.linkLabel1.TabIndex = 11;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "编辑 Illusion.json （我知道我在做什么！）";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Form3
             // 
@@ -251,5 +275,7 @@ namespace IllusionWF
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

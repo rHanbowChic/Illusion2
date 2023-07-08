@@ -233,7 +233,7 @@ namespace IllusionWF
 
                             if (Regex.IsMatch(fs, @".*?_.*?!.*?"))
                             {
-                                targetPath = @"C:\\Windows\\explorer.exe Shell:AppsFolder\" + fs;
+                                targetPath = @"C:\Windows\explorer.exe Shell:AppsFolder\" + fs;
                             }
                             if (Regex.IsMatch(fs, @"^(C|D|E|F):\.*?\.*?"))  //Anyone tell me a better way to solve this?
                             {
@@ -537,7 +537,7 @@ namespace IllusionWF
                 if (ApplySuccessing)
                 {
                     ButtonApply.Enabled = false;
-                    ButtonApply.Text = "Success!";
+                    ButtonApply.Text = "已应用";
                 }
                 else
                 {
@@ -550,17 +550,17 @@ namespace IllusionWF
                 if (File.Exists(illusionTempPath + $@"\{appNameBox.Text}.lnk"))
                 {
                     ButtonDel.Visible = true;
-                    ButtonDel.Text = "Waiting for System";
+                    ButtonDel.Text = "请等待...";
                     ButtonDel.Enabled = false;
                     if (ApplySuccessing)
                     {
                         ButtonApply.Enabled = false;
-                        ButtonApply.Text = "Success!";
+                        ButtonApply.Text = "已应用";
                     }
                     else
                     {
                         ButtonApply.Enabled = false;
-                        ButtonApply.Text = "Waiting for System";
+                        ButtonApply.Text = "请等待...";
                     }
                 }
                 else
@@ -569,7 +569,7 @@ namespace IllusionWF
                     if (ApplySuccessing)
                     {
                         ButtonApply.Enabled = false;
-                        ButtonApply.Text = "Success!";
+                        ButtonApply.Text = "已应用";
                     }
                     else
                     {
@@ -698,5 +698,36 @@ namespace IllusionWF
             label8.Visible = false;
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+            if (ShowNameBox.Checked == false)
+                ShowNameBox.Checked = true;
+            else
+                ShowNameBox.Checked = false;
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            if (themeBox.Checked == false)
+                themeBox.Checked = true;
+            else
+                themeBox.Checked = false;
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            if (CustomicoBox.Checked == false)
+                CustomicoBox.Checked = true;
+            else
+                CustomicoBox.Checked = false;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            if (CustomBox.Checked == false)
+                CustomBox.Checked = true;
+            else
+                CustomBox.Checked = false;
+        }
     }
 }

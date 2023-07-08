@@ -12,7 +12,7 @@ namespace IllusionWF
         public int sleepTime = 4000;
         public bool isWindows8 = false;
         public bool useCustomPython = false;
-        public string customPythonExePath = "";
+        public string customPythonExePath = "C:\\Windows\\py.exe";
         public int imgOffsetValue = 0;
     }
 }
