@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>已完成卸载</title>
+	<meta name="generator" content="LibreOffice 7.4.7.2 (Windows)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2023-07-09T17:07:51.672000000"/>
+	<style type="text/css">
+		@page { size: 8.5in 11in; margin-left: 2in; margin-right: 2in; margin-top: 1in; margin-bottom: 1in }
+		p { color: #000000; line-height: 115%; text-align: left; orphans: 0; widows: 0; margin-bottom: 0.1in; direction: ltr; background: transparent }
+		p.western { font-family: "Liberation Serif", serif; font-size: 12pt; so-language: en-US }
+		p.cjk { font-family: "0"; font-size: 12pt; so-language: zh-CN }
+		p.ctl { font-family: "Arial"; font-size: 12pt; so-language: hi-IN }
+		a:link { color: #000080; text-decoration: underline }
+	</style>
+</head>
+<body lang="en-US" text="#000000" link="#000080" vlink="#800000" dir="ltr"><p class="western" style="line-height: 115%; margin-bottom: 0.14in">
+<font color="#18a303"><font face="Microsoft YaHei, serif"><font size="4" style="font-size: 16pt"><span lang="zh-CN">Illusion
+</span></font></font><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="4" style="font-size: 16pt">已卸载。</font></font></font></span></font></p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><br/>
+<br/>
+
+</p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">然而，一些创建的磁贴不会从设备中删除。</font></font></span></font></p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">如果您要删除它们，请移除
+</font></font></span></font>
+</p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><font color="#1c99e0"><font face="Microsoft YaHei, serif"><font size="2" style="font-size: 11pt"><span lang="zh-CN">&lt;</span></font></font><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">用户目录</font></font></span></font><font face="Microsoft YaHei, serif"><font size="2" style="font-size: 11pt"><span lang="zh-CN">&gt;\AppData\Roaming\Microsoft\Windows\Start
+Menu\Programs\ </span></font></font></font>
+</p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">下的</font></font></span></font><font color="#0369a3"><font face="Microsoft YaHei, serif"><font size="2" style="font-size: 11pt"><span lang="zh-CN">Illusion</span></font></font></font><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">文件夹。</font></font></span></font></p>
+<p lang="zh-CN" class="western" style="line-height: 115%; margin-bottom: 0.14in">
+<br/>
+<br/>
+
+</p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">您也可以安全删除
+</font></font></span></font>
+</p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><font color="#1c99e0"><font face="Microsoft YaHei, serif"><font size="2" style="font-size: 11pt"><span lang="zh-CN">&lt;</span></font></font><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">用户目录</font></font></span></font><font face="Microsoft YaHei, serif"><font size="2" style="font-size: 11pt"><span lang="zh-CN">&gt;\AppData\Local\</span></font></font></font></p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">下的</font></font></span></font><font color="#0369a3"><font face="Microsoft YaHei, serif"><font size="2" style="font-size: 11pt"><span lang="zh-CN">Illusion</span></font></font></font><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei"><font size="2" style="font-size: 11pt">文件夹。这是磁贴程序所在的位置。</font></font></span></font></p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><br/>
+<br/>
+
+</p>
+<p class="western" style="line-height: 115%; margin-bottom: 0.14in"><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei, sans-serif"><font size="2" style="font-size: 11pt">如果您误删了</font></font></span></font><font face="Microsoft YaHei, sans-serif"><font size="2" style="font-size: 11pt">Illusion</font></font><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei, sans-serif"><font size="2" style="font-size: 11pt">，可以从</font></font></span></font><a href="https://github.com/rHanbowChic/Illusion2/releases"><font color="#1c99e0"><font face="Microsoft YaHei, sans-serif"><font size="2" style="font-size: 11pt"><u>GitHub</u></font></font></font></a><font face="0"><span lang="zh-CN"><font face="Microsoft YaHei, sans-serif"><font size="2" style="font-size: 11pt">重新下载。</font></font></span></font></p>
+</body>
+</html>

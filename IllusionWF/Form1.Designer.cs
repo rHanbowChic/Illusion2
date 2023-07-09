@@ -165,6 +165,7 @@ namespace IllusionWF
             this.ShowNameBox.Size = new System.Drawing.Size(26, 30);
             this.ShowNameBox.TabIndex = 4;
             this.ShowNameBox.UseVisualStyleBackColor = true;
+            
             // 
             // themeBox
             // 
@@ -225,12 +226,12 @@ namespace IllusionWF
             this.AboutToolStripMenuItem});
             this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
-            this.materialContextMenuStrip1.Size = new System.Drawing.Size(101, 26);
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(99, 26);
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.AboutToolStripMenuItem.Text = "关于";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 

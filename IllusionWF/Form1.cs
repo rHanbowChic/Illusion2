@@ -700,10 +700,7 @@ namespace IllusionWF
 
         private void label3_Click(object sender, EventArgs e)
         {
-            if (ShowNameBox.Checked == false)
-                ShowNameBox.Checked = true;
-            else
-                ShowNameBox.Checked = false;
+            ShowNameBox.Checked = !ShowNameBox.Checked;//much easier!i'll use this next time!
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -711,7 +708,7 @@ namespace IllusionWF
             if (themeBox.Checked == false)
                 themeBox.Checked = true;
             else
-                themeBox.Checked = false;
+                themeBox.Checked = false;//cOmPliCAteD
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -729,5 +726,6 @@ namespace IllusionWF
             else
                 CustomBox.Checked = false;
         }
+
     }
 }
