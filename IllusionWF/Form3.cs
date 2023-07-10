@@ -129,5 +129,10 @@ namespace IllusionWF
                 System.Diagnostics.Process.Start("explorer.exe", illusionRoamingPath+"\\Illusion.json");
 
         }
+
+        private void pythonExePathBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

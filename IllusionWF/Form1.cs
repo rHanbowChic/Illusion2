@@ -22,6 +22,9 @@ namespace IllusionWF
 {
     public partial class Form1 : MaterialForm
     {
+       
+
+
         string showName;
         string theme;
         bool isSystemMode;
@@ -47,6 +50,7 @@ namespace IllusionWF
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             this.listBox1.Items.Clear();
 
             
@@ -377,6 +381,7 @@ namespace IllusionWF
                     p1.StartInfo.Arguments = $" \"{appName}\" \"{targetPath}\" {r} {g} {b} {showName} {theme} \"{appxFolder}\"";
                 
             }
+            
             p1.Start();
             ApplySuccessing = true;
             timer1.Enabled = true;
@@ -531,6 +536,7 @@ namespace IllusionWF
             
             if (File.Exists($@"{userFolder}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Illusion\{appNameBox.Text}.lnk"))
             {
+                
                 ButtonDel.Visible = true;
                 ButtonDel.Text = "删除";
                 ButtonDel.Enabled = true;
