@@ -1334,4 +1334,7 @@
   <data name="TextWAITING" xml:space="preserve">
     <value>请等待...</value>
   </data>
+  <data name="linkLabelExtractLnkIcon.Text" xml:space="preserve">
+    <value>提取LNK图标</value>
+  </data>
 </root>

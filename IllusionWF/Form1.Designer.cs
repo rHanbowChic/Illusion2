@@ -65,6 +65,7 @@ namespace IllusionWF
             this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
             this.searchBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.label8 = new System.Windows.Forms.Label();
+            this.linkLabelExtractLnkIcon = new System.Windows.Forms.LinkLabel();
             this.materialContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,18 +168,18 @@ namespace IllusionWF
             // 
             // materialContextMenuStrip1
             // 
-            resources.ApplyResources(this.materialContextMenuStrip1, "materialContextMenuStrip1");
             this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.materialContextMenuStrip1.Depth = 0;
             this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutToolStripMenuItem});
             this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
+            resources.ApplyResources(this.materialContextMenuStrip1, "materialContextMenuStrip1");
             // 
             // AboutToolStripMenuItem
             // 
-            resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // button1
@@ -336,8 +337,8 @@ namespace IllusionWF
             // 
             // LinkLabelRefresh
             // 
-            resources.ApplyResources(this.LinkLabelRefresh, "LinkLabelRefresh");
             this.LinkLabelRefresh.ActiveLinkColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.LinkLabelRefresh, "LinkLabelRefresh");
             this.LinkLabelRefresh.LinkColor = System.Drawing.Color.Gray;
             this.LinkLabelRefresh.Name = "LinkLabelRefresh";
             this.LinkLabelRefresh.TabStop = true;
@@ -351,10 +352,6 @@ namespace IllusionWF
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // openFileDialog3
-            // 
-            resources.ApplyResources(this.openFileDialog3, "openFileDialog3");
             // 
             // searchBox
             // 
@@ -378,12 +375,22 @@ namespace IllusionWF
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.label8.Name = "label8";
             // 
+            // linkLabelExtractLnkIcon
+            // 
+            this.linkLabelExtractLnkIcon.ActiveLinkColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.linkLabelExtractLnkIcon, "linkLabelExtractLnkIcon");
+            this.linkLabelExtractLnkIcon.LinkColor = System.Drawing.Color.Gray;
+            this.linkLabelExtractLnkIcon.Name = "linkLabelExtractLnkIcon";
+            this.linkLabelExtractLnkIcon.TabStop = true;
+            this.linkLabelExtractLnkIcon.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelExtractLnkIcon_LinkClicked);
+            // 
             // Form1
             // 
-            resources.ApplyResources(this, "$this");
             this.AllowDrop = true;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.linkLabelExtractLnkIcon);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.LinkLabelRefresh);
@@ -457,6 +464,7 @@ namespace IllusionWF
         private System.Windows.Forms.OpenFileDialog openFileDialog3;
         private MaterialSkin.Controls.MaterialSingleLineTextField searchBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.LinkLabel linkLabelExtractLnkIcon;
     }
 }
 

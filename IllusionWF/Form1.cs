@@ -59,7 +59,7 @@ namespace IllusionWF
             if (Directory.Exists(userFolder + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"))
             {
 
-                DirectoryInfo desktopFolder = new DirectoryInfo(userFolder + "\\Desktop");
+                DirectoryInfo desktopFolder = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
                 foreach (FileInfo NextFile in desktopFolder.GetFiles())
                     lnkList.Add("Desktop::" + NextFile.Name);
                 foreach (DirectoryInfo NextFolder in desktopFolder.GetDirectories())
@@ -165,8 +165,8 @@ namespace IllusionWF
             {
                 if (listBox1.SelectedItem.ToString().Contains("Desktop::"))
                 {
-                    string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    lnkPath = userFolder + "\\Desktop\\" + listBox1.SelectedItem.ToString().Substring(9, listBox1.SelectedItem.ToString().Length - 9) + ".lnk";
+                    string desktopFolder = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                    lnkPath = desktopFolder + "\\" + listBox1.SelectedItem.ToString().Substring(9, listBox1.SelectedItem.ToString().Length - 9) + ".lnk";
                 }
                 else
                 {
@@ -597,7 +597,7 @@ namespace IllusionWF
             if (Directory.Exists(userFolder + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"))
             {
 
-                DirectoryInfo desktopFolder = new DirectoryInfo(userFolder + "\\Desktop");
+                DirectoryInfo desktopFolder = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
                 foreach (FileInfo NextFile in desktopFolder.GetFiles())
                     lnkList.Add("Desktop::" + NextFile.Name);
                 foreach (DirectoryInfo NextFolder in desktopFolder.GetDirectories())
@@ -688,7 +688,9 @@ namespace IllusionWF
             {
                 targetPathBox.Text = openFileDialog3.FileName;
                 selectedDir = Path.GetDirectoryName(openFileDialog3.FileName);
+                appxFolder = "None";
             }
+            
             
         }
 
@@ -733,5 +735,41 @@ namespace IllusionWF
                 CustomBox.Checked = false;
         }
 
+        private void linkLabelExtractLnkIcon_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            string desktopFolder = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            string lnkPath="";
+            if (listBox1.SelectedItem == null)
+                return;
+            string boxText = listBox1.SelectedItem.ToString();
+            if (boxText.StartsWith("Desktop::"))
+            {
+                lnkPath = desktopFolder + "\\" + boxText.Substring(9) + ".lnk";
+            }
+            else if (boxText.StartsWith("User::"))
+            {
+                lnkPath = userFolder + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\" + boxText.Substring(6) + ".lnk";
+            }
+            else
+            {
+                lnkPath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\" + boxText + ".lnk";
+            }
+
+            var rand = new Random();
+            Process p2 = new Process();
+            p2.StartInfo.FileName = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)+"\\ExtractIcon.exe";
+            p2.StartInfo.WorkingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            p2.StartInfo.Arguments = $" \"{lnkPath}\" \"{desktopFolder}\\ExtractedIcon_{rand.Next().ToString()}.png\"";
+            p2.StartInfo.UseShellExecute = false;
+            p2.StartInfo.RedirectStandardInput = true;
+            p2.StartInfo.RedirectStandardOutput = true;
+            p2.StartInfo.RedirectStandardError = true;
+            p2.StartInfo.CreateNoWindow = true;
+            p2.Start();
+            p2.WaitForExit();
+            p2.Close();
+            MessageBox.Show("已将LNK图标提取到桌面。","提取LNK图标");
+        }
     }
 }

@@ -1409,4 +1409,7 @@
   <data name="TextWAITING" xml:space="preserve">
     <value>Waiting for system...</value>
   </data>
+  <data name="linkLabelExtractLnkIcon.Text" xml:space="preserve">
+    <value>Extract .lnk Icon</value>
+  </data>
 </root>
