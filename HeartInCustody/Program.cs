@@ -85,9 +85,9 @@ namespace HeartInCustody
 
             }
 
-            if (!File.Exists(illusionTempPath + "\\Heart.py"))
+            if (!File.Exists(illusionTempPath + "\\Heart.exe"))
             {
-                File.Copy(currentPath + "\\Heart.py", illusionTempPath + "\\Heart.py");
+                File.Copy(currentPath + "\\Heart.exe", illusionTempPath + "\\Heart.exe");
             }
             if (!File.Exists(illusionTempPath + "\\blank.png"))
             {
@@ -98,9 +98,9 @@ namespace HeartInCustody
                 File.Copy(currentPath + "\\blankSmall.png", illusionTempPath + "\\blankSmall.png");
             }
             Process p2 = new Process();
-            p2.StartInfo.FileName = pythonExePath;
+            p2.StartInfo.FileName = $"{illusionTempPath}\\Heart.exe";
             p2.StartInfo.WorkingDirectory = illusionTempPath;
-            p2.StartInfo.Arguments = $" \"{illusionTempPath}\\Heart.py\" {r} {g} {b} Aspiration {sizeOffset}";
+            p2.StartInfo.Arguments = $" {r} {g} {b} Aspiration {sizeOffset}";
             p2.StartInfo.UseShellExecute = false;
             p2.StartInfo.RedirectStandardInput = true;
             p2.StartInfo.RedirectStandardOutput = true;
