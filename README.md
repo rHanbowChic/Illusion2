@@ -1,18 +1,23 @@
-Customize Your Tiles
+Custom Your Windows 10 Tiles
 ==================
 ![Illusion Logo](./logo.png)
 
-[Download](https://github.com/rHanbowChic/Illusion2/releases) it here!
+Illusion is a tool to create, customize and manage your Windows 10 Tiles.
 
-IllusionWF
-------------
+Features:
 
-A GUI for Illusion based on WinForm.
+* Creating tiles for ANY apps and files
+* Set background color for tiles, or use your custom background
+* Custom tile icon image and size
+
+You can check [Releases](https://github.com/rHanbowChic/Illusion2/releases) for the latest builds.
+
 
 HeavenlyThread
 ------------
 
-Illusion CLI Tool.
+Command line version of Illusion.
+
 Syntax: .\HeavenlyThread \[TileName\] \[TargetPath\] \[r\] \[g\] \[b\] (on|off) (dark|light) ("None"|AppxPath) <CustomPicturePath>
 
 
