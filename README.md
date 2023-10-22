@@ -1,4 +1,4 @@
-Custom Your Windows 10 Tiles
+Customize Your Windows 10 Tiles
 ==================
 ![Illusion Logo](./logo.png)
 
