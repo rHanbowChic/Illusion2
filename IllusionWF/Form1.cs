@@ -155,7 +155,8 @@ namespace IllusionWF
             string targetPath = "";
             string targetPathArgs = "";
 
-
+            if (listBox1.SelectedItem == null)
+                return;
             if (listBox1.SelectedItem.ToString().Contains("User::"))
             {
                 string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -689,6 +690,8 @@ namespace IllusionWF
                 targetPathBox.Text = openFileDialog3.FileName;
                 selectedDir = Path.GetDirectoryName(openFileDialog3.FileName);
                 appxFolder = "None";
+                appNameBox.Text = Path.GetFileName(openFileDialog3.FileName);
+                listBox1.SelectedItem = null;
             }
             
             
