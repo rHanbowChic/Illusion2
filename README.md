@@ -6,6 +6,7 @@ Illusion is a tool to create, customize and manage your Start menu tiles.
 
 Features:
 
+* Works on 20H2 or above!
 * Creating tiles for ANY apps and files
 * Support for UWP Applications
 * Setting background color for tiles, or use your custom background
