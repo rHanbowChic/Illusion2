@@ -4,6 +4,8 @@ Custom Your Windows 10 Tiles
 
 Illusion is a tool to create, customize and manage your Start menu tiles.
 
+![LTSC Illusion Screenshot](./W10ltsc.png)
+
 Features:
 
 * Works on 20H2 or above!
